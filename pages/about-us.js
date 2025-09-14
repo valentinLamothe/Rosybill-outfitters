@@ -8,7 +8,7 @@ export default function AboutUs() {
     <>
       <Head>
         <title>About Us - Rosybill Outfitters</title>
-        <meta name="description" content="Learn about Rosybill Outfitters - Argentina's premier hunting outfitters with 30+ years of experience." />
+        <meta name="description" content="Learn about Rosybill Outfitters - Argentina&apos;s premier hunting outfitters with 30+ years of experience." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -133,7 +133,7 @@ export default function AboutUs() {
                 </div>
                 <h3 className="text-xl font-semibold text-stone-800 mb-3">Duck & Waterfowl Hunting</h3>
                 <p className="text-stone-600">
-                  Premium duck and waterfowl hunting in Argentina's wetlands, marshes, and private reserves.
+                  Premium duck and waterfowl hunting in Argentina&apos;s wetlands, marshes, and private reserves.
                 </p>
               </div>
 

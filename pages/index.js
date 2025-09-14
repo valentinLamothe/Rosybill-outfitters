@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <Head>
         <title>Rosybill Outfitters - Sporting Excellence</title>
-        <meta name="description" content="Argentina's Premier Wingshooting Destination. Unparalleled dove hunting, duck hunting, and bird shooting experiences with expert guides." />
+        <meta name="description" content="Argentina&apos;s Premier Wingshooting Destination. Unparalleled dove hunting, duck hunting, and bird shooting experiences with expert guides." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
