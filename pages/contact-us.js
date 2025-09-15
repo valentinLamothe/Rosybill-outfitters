@@ -2,9 +2,16 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import ContactForm from '../components/ContactForm';
-import { Phone, Target } from 'lucide-react';
+import { Phone, Target, Menu, X } from 'lucide-react';
+import { FiFlag } from 'react-icons/fi';
+import { MdEmail } from 'react-icons/md';
+import { FaFlagUsa } from 'react-icons/fa';
+import { FaFlag } from 'react-icons/fa6';
+import { useState } from 'react';
 
 export default function ContactUs() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <>
       <Head>
@@ -27,31 +34,81 @@ export default function ContactUs() {
                     alt="Rosybill Outfitters Logo" 
                     width={120} 
                     height={60} 
-                    className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
+                    className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
                   />
-                  <div className="ml-3">
-                    <div className="text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
+                  <div className="ml-2 sm:ml-3">
+                    <div className="text-sm sm:text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
                       Rosybill Outfitters
                     </div>
-                    <div className="text-xs text-stone-600 italic transition-all duration-300 group-hover:text-orange-600">
+                    <div className="text-xs text-stone-600 italic transition-all duration-300 group-hover:text-orange-600 hidden sm:block">
                       premier hunting outfitters
                     </div>
                     <div className="text-xs text-stone-500 flex items-center gap-1 mt-1 transition-all duration-300 group-hover:text-orange-500">
-                      <span className="text-sm animate-pulse">🏹</span>
+                      <FiFlag className="text-sm animate-pulse" />
                       <span>Argentina</span>
                     </div>
                   </div>
                 </div>
               </Link>
               
-              {/* Navigation */}
+              {/* Desktop Navigation */}
               <nav className="hidden lg:flex space-x-8">
                 <Link href="/" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">Home</Link>
                 <Link href="/wingshooting" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">Wingshooting</Link>
                 <Link href="/about-us" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">About Us</Link>
                 <Link href="/contact-us" className="text-orange-600 hover:text-orange-700 font-medium transition-colors">Contact US</Link>
               </nav>
+
+              {/* Mobile menu button */}
+              <div className="lg:hidden">
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="inline-flex items-center justify-center p-2 rounded-md text-stone-700 hover:text-orange-600 hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-colors"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="block h-6 w-6" />
+                  ) : (
+                    <Menu className="block h-6 w-6" />
+                  )}
+                </button>
+              </div>
             </div>
+
+            {/* Mobile menu */}
+            {mobileMenuOpen && (
+              <div className="lg:hidden">
+                <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-stone-200 rounded-b-lg shadow-lg">
+                  <Link 
+                    href="/" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    href="/wingshooting" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Wingshooting
+                  </Link>
+                  <Link 
+                    href="/about-us" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    href="/contact-us" 
+                    className="block px-3 py-2 text-base font-medium text-orange-600 bg-orange-100 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </header>
 
@@ -91,15 +148,21 @@ export default function ContactUs() {
                 </div>
                 <h3 className="text-xl font-semibold text-stone-800 mb-4">Call or WhatsApp</h3>
                 <div className="space-y-2">
-                  <p className="text-stone-600">🇺🇸 4044042333</p>
-                  <p className="text-stone-600">🇦🇷 +54 9 11 69274103</p>
+                  <p className="text-stone-600 flex items-center gap-2">
+                    <FaFlagUsa className="w-4 h-4 text-red-500" />
+                    4044042333
+                  </p>
+                  <p className="text-stone-600 flex items-center gap-2">
+                    <FaFlag className="w-4 h-4 text-blue-400" />
+                    +54 9 11 69274103
+                  </p>
                 </div>
               </div>
 
               {/* Email */}
               <div className="text-center p-6 bg-stone-50 rounded-lg shadow-md">
                 <div className="w-16 h-16 mx-auto bg-green-600 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-white text-2xl">📧</span>
+                  <MdEmail className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-stone-800 mb-4">Email</h3>
                 <div className="space-y-2">
@@ -168,8 +231,14 @@ export default function ContactUs() {
                     <div className="flex items-center space-x-3">
                       <Phone className="w-5 h-5 text-orange-600" />
                       <div>
-                        <p className="font-semibold text-stone-800">🇺🇸 US Office: 4044042333</p>
-                        <p className="font-semibold text-stone-800">🇦🇷 Argentina Office: +54 9 11 69274103</p>
+                        <p className="font-semibold text-stone-800 flex items-center gap-2">
+                          <FaFlagUsa className="w-4 h-4 text-red-500" />
+                          US Office: 4044042333
+                        </p>
+                        <p className="font-semibold text-stone-800 flex items-center gap-2">
+                          <FaFlag className="w-4 h-4 text-blue-400" />
+                          Argentina Office: +54 9 11 69274103
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -196,7 +265,9 @@ export default function ContactUs() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* US Office */}
               <div className="text-center p-6 bg-stone-700 rounded-lg">
-                <div className="text-4xl mb-4">🇺🇸</div>
+                <div className="mb-4">
+                  <FaFlagUsa className="w-12 h-12 text-red-500 mx-auto" />
+                </div>
                 <h3 className="text-xl font-semibold mb-4">US OFFICE</h3>
                 <div className="space-y-3">
                   <p className="text-2xl font-bold">4044042333</p>
@@ -206,7 +277,9 @@ export default function ContactUs() {
 
               {/* Argentina Office */}
               <div className="text-center p-6 bg-stone-700 rounded-lg">
-                <div className="text-4xl mb-4">🇦🇷</div>
+                <div className="mb-4">
+                  <FaFlag className="w-12 h-12 text-blue-400 mx-auto" />
+                </div>
                 <h3 className="text-xl font-semibold mb-4">ARGENTINA OFFICE</h3>
                 <div className="space-y-3">
                   <p className="text-2xl font-bold">+54 9 11 69274103</p>

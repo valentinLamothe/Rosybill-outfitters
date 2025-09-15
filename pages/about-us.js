@@ -1,9 +1,14 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Target, Building } from 'lucide-react';
+import { Target, Building, Menu, X } from 'lucide-react';
+import { FiFlag } from 'react-icons/fi';
+import { GiFeatheredWing } from 'react-icons/gi';
+import { useState } from 'react';
 
 export default function AboutUs() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <>
       <Head>
@@ -26,31 +31,81 @@ export default function AboutUs() {
                     alt="Rosybill Outfitters Logo" 
                     width={120} 
                     height={60} 
-                    className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
+                    className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
                   />
-                  <div className="ml-3">
-                    <div className="text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
+                  <div className="ml-2 sm:ml-3">
+                    <div className="text-sm sm:text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
                       Rosybill Outfitters
                     </div>
-                    <div className="text-xs text-stone-600 italic transition-all duration-300 group-hover:text-orange-600">
+                    <div className="text-xs text-stone-600 italic transition-all duration-300 group-hover:text-orange-600 hidden sm:block">
                       premier hunting outfitters
                     </div>
                     <div className="text-xs text-stone-500 flex items-center gap-1 mt-1 transition-all duration-300 group-hover:text-orange-500">
-                      <span className="text-sm animate-pulse">🏹</span>
+                      <FiFlag className="text-sm animate-pulse" />
                       <span>Argentina</span>
                     </div>
                   </div>
                 </div>
               </Link>
               
-              {/* Navigation */}
+              {/* Desktop Navigation */}
               <nav className="hidden lg:flex space-x-8">
                 <Link href="/" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">Home</Link>
                 <Link href="/wingshooting" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">Wingshooting</Link>
                 <Link href="/about-us" className="text-orange-600 hover:text-orange-700 font-medium transition-colors">About Us</Link>
                 <Link href="/contact-us" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">Contact US</Link>
               </nav>
+
+              {/* Mobile menu button */}
+              <div className="lg:hidden">
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="inline-flex items-center justify-center p-2 rounded-md text-stone-700 hover:text-orange-600 hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-colors"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="block h-6 w-6" />
+                  ) : (
+                    <Menu className="block h-6 w-6" />
+                  )}
+                </button>
+              </div>
             </div>
+
+            {/* Mobile menu */}
+            {mobileMenuOpen && (
+              <div className="lg:hidden">
+                <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-stone-200 rounded-b-lg shadow-lg">
+                  <Link 
+                    href="/" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    href="/wingshooting" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Wingshooting
+                  </Link>
+                  <Link 
+                    href="/about-us" 
+                    className="block px-3 py-2 text-base font-medium text-orange-600 bg-orange-100 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    href="/contact-us" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </header>
 
@@ -139,7 +194,7 @@ export default function AboutUs() {
 
               <div className="text-center p-6 bg-white rounded-lg shadow-md">
                 <div className="w-16 h-16 mx-auto bg-green-600 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-white text-2xl">🕊️</span>
+                  <GiFeatheredWing className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-stone-800 mb-3">Wingshooting</h3>
                 <p className="text-stone-600">

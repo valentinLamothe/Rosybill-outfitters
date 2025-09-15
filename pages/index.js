@@ -1,9 +1,16 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MapPin, Target, Star, Users, Building } from 'lucide-react';
+import { MapPin, Target, Star, Users, Building, Menu, X } from 'lucide-react';
+import { FiFlag } from 'react-icons/fi';
+import { FaFlagUsa } from 'react-icons/fa';
+import { FaFlag } from 'react-icons/fa6';
+import { MdMuseum } from 'react-icons/md';
+import { useState } from 'react';
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <>
       <Head>
@@ -26,31 +33,81 @@ export default function Home() {
                     alt="Rosybill Outfitters Logo" 
                     width={120} 
                     height={60} 
-                    className="h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
+                    className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
                   />
-                  <div className="ml-3">
-                    <div className="text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
+                  <div className="ml-2 sm:ml-3">
+                    <div className="text-sm sm:text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
                       Rosybill Outfitters
                     </div>
-                    <div className="text-xs text-stone-600 italic transition-all duration-300 group-hover:text-orange-600">
+                    <div className="text-xs text-stone-600 italic transition-all duration-300 group-hover:text-orange-600 hidden sm:block">
                       premier hunting outfitters
                     </div>
                     <div className="text-xs text-stone-500 flex items-center gap-1 mt-1 transition-all duration-300 group-hover:text-orange-500">
-                      <span className="text-sm animate-pulse">🏹</span>
+                      <FiFlag className="text-sm animate-pulse" />
                       <span>Argentina</span>
                     </div>
                   </div>
                 </div>
               </Link>
               
-              {/* Navigation */}
+              {/* Desktop Navigation */}
               <nav className="hidden lg:flex space-x-8">
                 <Link href="/" className="text-orange-600 hover:text-orange-700 font-medium transition-colors">Home</Link>
                 <Link href="/wingshooting" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">Wingshooting</Link>
                 <Link href="/about-us" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">About Us</Link>
                 <Link href="/contact-us" className="text-stone-700 hover:text-orange-600 font-medium transition-colors">Contact US</Link>
               </nav>
+
+              {/* Mobile menu button */}
+              <div className="lg:hidden">
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="inline-flex items-center justify-center p-2 rounded-md text-stone-700 hover:text-orange-600 hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-orange-500 transition-colors"
+                >
+                  {mobileMenuOpen ? (
+                    <X className="block h-6 w-6" />
+                  ) : (
+                    <Menu className="block h-6 w-6" />
+                  )}
+                </button>
+              </div>
             </div>
+
+            {/* Mobile menu */}
+            {mobileMenuOpen && (
+              <div className="lg:hidden">
+                <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t border-stone-200 rounded-b-lg shadow-lg">
+                  <Link 
+                    href="/" 
+                    className="block px-3 py-2 text-base font-medium text-orange-600 bg-orange-100 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Home
+                  </Link>
+                  <Link 
+                    href="/wingshooting" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Wingshooting
+                  </Link>
+                  <Link 
+                    href="/about-us" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    About Us
+                  </Link>
+                  <Link 
+                    href="/contact-us" 
+                    className="block px-3 py-2 text-base font-medium text-stone-700 hover:text-orange-600 hover:bg-orange-50 rounded-md transition-colors"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </div>
+            )}
           </div>
         </header>
 
@@ -64,13 +121,13 @@ export default function Home() {
           
           <div className="relative z-10 flex items-center justify-center h-full text-center">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight slide-up-stagger-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight slide-up-stagger-1">
                 Elite Hunting Argentina
               </h1>
-              <p className="text-xl md:text-2xl text-stone-200 mb-8 slide-up-stagger-2">
+              <p className="text-lg sm:text-xl md:text-2xl text-stone-200 mb-6 sm:mb-8 slide-up-stagger-2">
                 Premier Bird Hunting Outfitters
               </p>
-              <p className="text-lg text-stone-300 mb-10 max-w-2xl mx-auto slide-up-stagger-3">
+              <p className="text-sm sm:text-base md:text-lg text-stone-300 mb-8 sm:mb-10 max-w-2xl mx-auto slide-up-stagger-3 px-2">
                 Professional hunting expeditions in Argentina&apos;s finest territories with expert guides and authentic experiences.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up-stagger-4">
@@ -92,41 +149,41 @@ export default function Home() {
         </section>
 
         {/* Professional Hunting Outfitters - Continuous Carousel */}
-        <section className="py-12 bg-stone-800 relative overflow-hidden fade-in-section">
+        <section className="py-8 sm:py-12 bg-stone-800 relative overflow-hidden fade-in-section">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2">Professional Hunting Outfitters</h2>
-              <p className="text-stone-300">Argentina&apos;s premier wingshooting destination</p>
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-2">Professional Hunting Outfitters</h2>
+              <p className="text-sm sm:text-base text-stone-300">Argentina&apos;s premier wingshooting destination</p>
             </div>
 
             {/* Continuous Moving Carousel */}
-            <div className="carousel-wrapper overflow-hidden h-20 relative">
-              <div className="carousel-continuous flex items-center space-x-12">
+            <div className="carousel-wrapper overflow-hidden h-16 sm:h-20 relative">
+              <div className="carousel-continuous flex items-center space-x-8 sm:space-x-12">
                 
                 {/* First Set */}
-                <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <MapPin className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Buenos Aires</span>
+                <div className="flex items-center space-x-2 sm:space-x-3 whitespace-nowrap">
+                  <MapPin className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Buenos Aires</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Target className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Duck Hunting</span>
+                  <Target className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Duck Hunting</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Star className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Córdoba Doves</span>
+                  <Star className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Córdoba Doves</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Users className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Expert Guides</span>
+                  <Users className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Expert Guides</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Building className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Premium Lodges</span>
+                  <Building className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Premium Lodges</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
@@ -135,29 +192,29 @@ export default function Home() {
                 </div>
 
                 {/* Duplicate Set for Continuous Loop */}
-                <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <MapPin className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Buenos Aires</span>
+                <div className="flex items-center space-x-2 sm:space-x-3 whitespace-nowrap">
+                  <MapPin className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Buenos Aires</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Target className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Duck Hunting</span>
+                  <Target className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Duck Hunting</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Star className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Córdoba Doves</span>
+                  <Star className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Córdoba Doves</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Users className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Expert Guides</span>
+                  <Users className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Expert Guides</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
-                  <Building className="w-6 h-6 text-orange-500" />
-                  <span className="text-white font-semibold">Premium Lodges</span>
+                  <Building className="w-4 sm:w-6 h-4 sm:h-6 text-orange-500" />
+                  <span className="text-white font-semibold text-sm sm:text-base">Premium Lodges</span>
                 </div>
                 
                 <div className="flex items-center space-x-3 whitespace-nowrap">
@@ -216,40 +273,40 @@ export default function Home() {
         </section>
 
         {/* Hunting Services Section */}
-        <section className="py-16 bg-stone-100 fade-in-section">
+        <section className="py-12 sm:py-16 bg-stone-100 fade-in-section">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
               <div>
-                <h2 className="text-3xl font-bold text-stone-800 mb-8">Hunting Services</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-6 sm:mb-8">Hunting Services</h2>
                 
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
-                      <Target className="w-6 h-6 text-white" />
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded-lg flex items-center justify-center">
+                      <Target className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-stone-800 mb-2">Duck Hunting</h3>
-                      <p className="text-stone-600">Premium waterfowl hunting in Argentina&apos;s wetlands and marshes</p>
+                      <h3 className="text-lg sm:text-xl font-semibold text-stone-800 mb-1 sm:mb-2">Duck Hunting</h3>
+                      <p className="text-sm sm:text-base text-stone-600">Premium waterfowl hunting in Argentina&apos;s wetlands and marshes</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
-                      <span className="text-white text-xl">🕊️</span>
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-lg flex items-center justify-center">
+                      <Star className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-stone-800 mb-2">Bird Hunting</h3>
-                      <p className="text-stone-600">World-class dove shooting, duck hunting, and perdiz in prime flyways</p>
+                      <h3 className="text-lg sm:text-xl font-semibold text-stone-800 mb-1 sm:mb-2">Bird Hunting</h3>
+                      <p className="text-sm sm:text-base text-stone-600">World-class dove shooting, duck hunting, and perdiz in prime flyways</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-amber-600 rounded-lg flex items-center justify-center">
-                      <Building className="w-6 h-6 text-white" />
+                  <div className="flex items-start space-x-3 sm:space-x-4">
+                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-amber-600 rounded-lg flex items-center justify-center">
+                      <Building className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-stone-800 mb-2">Hunting Lodges</h3>
-                      <p className="text-stone-600">Traditional Argentine estancias with modern amenities and gourmet cuisine</p>
+                      <h3 className="text-lg sm:text-xl font-semibold text-stone-800 mb-1 sm:mb-2">Hunting Lodges</h3>
+                      <p className="text-sm sm:text-base text-stone-600">Traditional Argentine estancias with modern amenities and gourmet cuisine</p>
                     </div>
                   </div>
                 </div>
@@ -345,7 +402,7 @@ export default function Home() {
               {/* Cultural Excursions */}
               <div className="text-center p-6 bg-white rounded-lg shadow-md">
                 <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">🏛️</span>
+                  <MdMuseum className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-stone-800 mb-3">Cultural Excursions</h3>
                 <p className="text-stone-600">
@@ -380,7 +437,9 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* US Contact */}
               <div className="text-center p-6 bg-stone-700 rounded-lg">
-                <div className="text-4xl mb-4">🇺🇸</div>
+                <div className="mb-4">
+                  <FaFlagUsa className="w-12 h-12 text-red-500 mx-auto" />
+                </div>
                 <h3 className="text-xl font-semibold mb-4">US OFFICE</h3>
                 <div className="space-y-3">
                   <a href="tel:4044042333" className="text-2xl font-bold hover:text-orange-300 transition-colors cursor-pointer block">4044042333</a>
@@ -390,7 +449,9 @@ export default function Home() {
 
               {/* Argentina Contact */}
               <div className="text-center p-6 bg-stone-700 rounded-lg">
-                <div className="text-4xl mb-4">🇦🇷</div>
+                <div className="mb-4">
+                  <FaFlag className="w-12 h-12 text-blue-400 mx-auto" />
+                </div>
                 <h3 className="text-xl font-semibold mb-4">ARGENTINA OFFICE</h3>
                 <div className="space-y-3">
                   <a href="tel:+5491169274103" className="text-2xl font-bold hover:text-orange-300 transition-colors cursor-pointer block">+54 9 11 69274103</a>
