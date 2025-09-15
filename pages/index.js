@@ -99,7 +99,35 @@ export default function Home() {
         <title>Rosybill Outfitters - Sporting Excellence</title>
         <meta name="description" content="Argentina&apos;s Premier Wingshooting Destination. Unparalleled dove hunting, duck hunting, and bird shooting experiences with expert guides." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rosybill-outfitters.vercel.app/" />
+        <meta property="og:title" content="Rosybill Outfitters - Premier Argentina Hunting" />
+        <meta property="og:description" content="Argentina&apos;s Premier Wingshooting Destination. Unparalleled dove hunting, duck hunting, and bird shooting experiences with expert guides." />
+        <meta property="og:image" content="https://rosybill-outfitters.vercel.app/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Rosybill Outfitters" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://rosybill-outfitters.vercel.app/" />
+        <meta name="twitter:title" content="Rosybill Outfitters - Premier Argentina Hunting" />
+        <meta name="twitter:description" content="Argentina&apos;s Premier Wingshooting Destination. Unparalleled dove hunting, duck hunting, and bird shooting experiences with expert guides." />
+        <meta name="twitter:image" content="https://rosybill-outfitters.vercel.app/og-image.jpg" />
+        
+        {/* Additional Meta */}
+        <meta name="theme-color" content="#ea580c" />
+        <meta name="author" content="Rosybill Outfitters" />
+        <meta name="keywords" content="hunting, argentina, wingshooting, waterfowl, upland game, outfitters, guides, luxury, buenos aires, entre rios, cordoba" />
       </Head>
 
       <div className="min-h-screen bg-stone-50">

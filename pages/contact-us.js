@@ -18,7 +18,35 @@ export default function ContactUs() {
         <title>Contact Us - Rosybill Outfitters</title>
         <meta name="description" content="Contact Rosybill Outfitters to plan your personalized hunting trip in Argentina. Book your adventure today." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rosybill-outfitters.vercel.app/contact-us" />
+        <meta property="og:title" content="Contact Rosybill Outfitters - Book Your Hunt" />
+        <meta property="og:description" content="Contact Rosybill Outfitters to plan your personalized hunting trip in Argentina. Book your adventure today." />
+        <meta property="og:image" content="https://rosybill-outfitters.vercel.app/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Rosybill Outfitters" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://rosybill-outfitters.vercel.app/contact-us" />
+        <meta name="twitter:title" content="Contact Rosybill Outfitters - Book Your Hunt" />
+        <meta name="twitter:description" content="Contact Rosybill Outfitters to plan your personalized hunting trip in Argentina. Book your adventure today." />
+        <meta name="twitter:image" content="https://rosybill-outfitters.vercel.app/og-image.jpg" />
+        
+        {/* Additional Meta */}
+        <meta name="theme-color" content="#ea580c" />
+        <meta name="author" content="Rosybill Outfitters" />
+        <meta name="keywords" content="contact rosybill, hunting bookings, argentina hunt contact, rosybill phone, hunting reservations" />
       </Head>
 
       <div className="min-h-screen bg-stone-50">

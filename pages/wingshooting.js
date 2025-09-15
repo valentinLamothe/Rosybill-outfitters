@@ -96,7 +96,35 @@ export default function Wingshooting() {
         <title>Wingshooting - Rosybill Outfitters</title>
         <meta name="description" content="Premier wingshooting experiences in Argentina - Buenos Aires, Entre Rios, and Cordoba hunting territories." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rosybill-outfitters.vercel.app/wingshooting" />
+        <meta property="og:title" content="Wingshooting Argentina - Rosybill Outfitters" />
+        <meta property="og:description" content="Premier wingshooting experiences in Argentina - Buenos Aires, Entre Rios, and Cordoba hunting territories with expert guides." />
+        <meta property="og:image" content="https://rosybill-outfitters.vercel.app/og-image.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Rosybill Outfitters" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://rosybill-outfitters.vercel.app/wingshooting" />
+        <meta name="twitter:title" content="Wingshooting Argentina - Rosybill Outfitters" />
+        <meta name="twitter:description" content="Premier wingshooting experiences in Argentina - Buenos Aires, Entre Rios, and Cordoba hunting territories with expert guides." />
+        <meta name="twitter:image" content="https://rosybill-outfitters.vercel.app/og-image.jpg" />
+        
+        {/* Additional Meta */}
+        <meta name="theme-color" content="#ea580c" />
+        <meta name="author" content="Rosybill Outfitters" />
+        <meta name="keywords" content="wingshooting, argentina, duck hunting, dove hunting, buenos aires, entre rios, cordoba, hunting guides, outfitters" />
       </Head>
 
       <div className="min-h-screen bg-stone-50">
