@@ -1,13 +1,94 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Target, Building, Crosshair, Menu, X } from 'lucide-react';
+import { Target, Building, Crosshair, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FiFlag } from 'react-icons/fi';
 import { MdDinnerDining } from 'react-icons/md';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Wingshooting() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
+  // Array de imágenes en orden: outside 1-5, luego inside 1-3
+  const houseImages = [
+    '/images/aires_house_outside_1.JPG',
+    '/images/aires_house_outside_2.jpg',
+    '/images/aires_house_outside_3.jpg',
+    '/images/aires_house_outside_4.JPG',
+    '/images/aires_house_outside_5.jpg',
+    '/images/aires_house_inside_1.jpg',
+    '/images/aires_house_inside_2.jpg',
+    '/images/aires_house_inside_3.jpg'
+  ];
+
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === houseImages.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) => 
+      prevIndex === 0 ? houseImages.length - 1 : prevIndex - 1
+    );
+  };
+
+  const goToImage = (index) => {
+    setCurrentImageIndex(index);
+  };
+
+  // Touch handlers for swipe navigation
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextImage();
+    }
+    if (isRightSwipe) {
+      prevImage();
+    }
+
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
+  // Auto-advance carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevImage();
+      } else if (e.key === 'ArrowRight') {
+        nextImage();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   return (
     <>
@@ -143,16 +224,77 @@ export default function Wingshooting() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Buenos Aires */}
+              {/* Buenos Aires - with Carousel */}
               <div className="bg-stone-50 rounded-lg overflow-hidden shadow-md">
-                <div className="h-64">
-                  <Image
-                    src="/images/accomodation1.webp"
-                    alt="Buenos Aires Hunting Lodge"
-                    width={400}
-                    height={256}
-                    className="w-full h-full object-cover"
-                  />
+                <div 
+                  className="h-64 relative group cursor-grab active:cursor-grabbing"
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                >
+                  {/* Carousel Container */}
+                  <div className="relative w-full h-full overflow-hidden">
+                    <Image
+                      src={houseImages[currentImageIndex]}
+                      alt={`Buenos Aires Hunting Lodge - ${currentImageIndex < 5 ? 'Outside' : 'Inside'} ${currentImageIndex < 5 ? currentImageIndex + 1 : currentImageIndex - 4}`}
+                      width={400}
+                      height={256}
+                      className="w-full h-full object-cover transition-all duration-500"
+                      priority
+                    />
+                    
+                    {/* Image Counter - Always Visible on Mobile */}
+                    <div className="absolute top-2 right-2 bg-black/80 text-white text-xs sm:text-sm px-2 py-1 rounded-md backdrop-blur-sm">
+                      {currentImageIndex + 1} / {houseImages.length}
+                    </div>
+                    
+                    {/* View Type Indicator */}
+                    <div className="absolute top-2 left-2 bg-orange-500/90 text-white text-xs px-2 py-1 rounded-md backdrop-blur-sm">
+                      {currentImageIndex < 5 ? 'Outside View' : 'Inside View'}
+                    </div>
+                    
+                    {/* Desktop Navigation Arrows */}
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hidden sm:block"
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hidden sm:block"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                    
+                    {/* Mobile Touch Areas */}
+                    <div className="absolute left-0 top-0 w-1/3 h-full sm:hidden" onClick={prevImage} />
+                    <div className="absolute right-0 top-0 w-1/3 h-full sm:hidden" onClick={nextImage} />
+                  </div>
+                  
+                  {/* Enhanced Dot Indicators */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1">
+                    {houseImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToImage(index)}
+                        className={`rounded-full transition-all duration-300 touch-manipulation ${
+                          index === currentImageIndex 
+                            ? 'bg-orange-500 scale-125 w-3 h-3 sm:w-2 sm:h-2' 
+                            : 'bg-white/70 hover:bg-white/90 w-2 h-2 sm:w-2 sm:h-2'
+                        }`}
+                        aria-label={`Go to image ${index + 1} - ${index < 5 ? 'Outside' : 'Inside'} view`}
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Swipe Instruction for Mobile */}
+                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 sm:hidden transition-opacity duration-300">
+                    Swipe to navigate
+                  </div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-stone-800 mb-3">Buenos Aires</h3>
@@ -160,6 +302,9 @@ export default function Wingshooting() {
                   <p className="text-stone-700">
                     Hunt premium waterfowl and upland game birds in Buenos Aires province. 
                     Traditional estancia with expert guides and authentic Argentine hospitality.
+                  </p>
+                  <p className="text-sm text-stone-500 mt-3 italic">
+                    {currentImageIndex < 5 ? '🏡 Outside view' : '🏠 Inside view'}
                   </p>
                 </div>
               </div>

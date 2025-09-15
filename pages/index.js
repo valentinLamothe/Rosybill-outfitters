@@ -1,15 +1,97 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MapPin, Target, Star, Users, Building, Menu, X } from 'lucide-react';
+import { MapPin, Target, Star, Users, Building, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FiFlag } from 'react-icons/fi';
 import { FaFlagUsa } from 'react-icons/fa';
 import { FaFlag } from 'react-icons/fa6';
-import { MdMuseum } from 'react-icons/md';
-import { useState } from 'react';
+import { MdMuseum, MdDinnerDining } from 'react-icons/md';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
+  // House images for carousel
+  const houseImages = [
+    '/images/aires_house_outside_1.JPG',
+    '/images/aires_house_outside_2.jpg',
+    '/images/aires_house_outside_3.jpg',
+    '/images/aires_house_outside_4.JPG',
+    '/images/aires_house_outside_5.jpg',
+    '/images/aires_house_inside_1.jpg',
+    '/images/aires_house_inside_2.jpg',
+    '/images/aires_house_inside_3.jpg'
+  ];
+
+  // Carousel functions
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === houseImages.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => 
+      prev === 0 ? houseImages.length - 1 : prev - 1
+    );
+  };
+
+  const goToImage = (index) => {
+    setCurrentImageIndex(index);
+  };
+
+  // Touch handlers for swipe navigation
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextImage();
+    }
+    if (isRightSwipe) {
+      prevImage();
+    }
+
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
+  // Auto-advance carousel (optional)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextImage();
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowLeft') {
+        prevImage();
+      } else if (e.key === 'ArrowRight') {
+        nextImage();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
 
   return (
     <>
@@ -346,14 +428,76 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* First Lodge - Enhanced Carousel */}
               <div className="rounded-lg overflow-hidden shadow-md">
-                <Image
-                  src="/images/accomodation1.webp"
-                  alt="Rosybill Outfitters Lodge 1"
-                  width={400}
-                  height={300}
-                  className="w-full h-48 object-cover"
-                />
+                <div 
+                  className="h-48 relative group cursor-grab active:cursor-grabbing"
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                >
+                  <div className="relative w-full h-full overflow-hidden">
+                    <Image
+                      src={houseImages[currentImageIndex]}
+                      alt={`Buenos Aires Hunting Lodge - ${currentImageIndex < 5 ? 'Outside' : 'Inside'} ${currentImageIndex < 5 ? currentImageIndex + 1 : currentImageIndex - 4}`}
+                      width={400}
+                      height={192}
+                      className="w-full h-full object-cover transition-all duration-500"
+                      priority
+                    />
+                    
+                    {/* Image Counter - Always Visible on Mobile */}
+                    <div className="absolute top-2 right-2 bg-black/80 text-white text-xs sm:text-sm px-2 py-1 rounded-md backdrop-blur-sm">
+                      {currentImageIndex + 1} / {houseImages.length}
+                    </div>
+                    
+                    {/* View Type Indicator */}
+                    <div className="absolute top-2 left-2 bg-orange-500/90 text-white text-xs px-2 py-1 rounded-md backdrop-blur-sm">
+                      {currentImageIndex < 5 ? 'Outside View' : 'Inside View'}
+                    </div>
+                    
+                    {/* Desktop Arrow Buttons */}
+                    <button 
+                      onClick={prevImage} 
+                      className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hidden sm:block" 
+                      aria-label="Previous image"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button 
+                      onClick={nextImage} 
+                      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hidden sm:block" 
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                    
+                    {/* Mobile Touch Areas */}
+                    <div className="absolute left-0 top-0 w-1/3 h-full sm:hidden" onClick={prevImage} />
+                    <div className="absolute right-0 top-0 w-1/3 h-full sm:hidden" onClick={nextImage} />
+                  </div>
+                  
+                  {/* Enhanced Dot Indicators */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1">
+                    {houseImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToImage(index)}
+                        className={`rounded-full transition-all duration-300 touch-manipulation ${
+                          index === currentImageIndex 
+                            ? 'bg-orange-500 scale-125 w-3 h-3 sm:w-2 sm:h-2' 
+                            : 'bg-white/70 hover:bg-white/90 w-2 h-2 sm:w-2 sm:h-2'
+                        }`}
+                        aria-label={`Go to image ${index + 1} - ${index < 5 ? 'Outside' : 'Inside'} view`}
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Swipe Instruction for Mobile */}
+                  <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-black/60 text-white text-xs px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 sm:hidden transition-opacity duration-300">
+                    Swipe to navigate
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-lg overflow-hidden shadow-md">
@@ -387,38 +531,83 @@ export default function Home() {
               <p className="text-lg text-stone-600 max-w-2xl mx-auto">Enhance your hunting adventure with our premium additional services</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Wildlife Photography */}
-              <div className="text-center p-6 bg-white rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-orange-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">📸</span>
+            {/* Main Content Grid - Image + Services */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              
+              {/* Left Side - Gaucho Asado Image */}
+              <div className="relative">
+                <div className="relative overflow-hidden rounded-lg shadow-xl">
+                  <Image
+                    src="/images/gaucho_asado.jpg"
+                    alt="Traditional Argentine Gaucho Asado - Authentic BBQ Experience"
+                    width={600}
+                    height={400}
+                    className="w-full h-[400px] object-cover"
+                    priority
+                  />
+                  {/* Overlay with title */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h3 className="text-2xl font-bold text-white mb-2">Authentic Argentine Experience</h3>
+                    <p className="text-white/90 text-sm">Traditional gaucho asado and premium Argentine hospitality</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-stone-800 mb-3">Wildlife Photography</h3>
-                <p className="text-stone-600">
-                  Capture Argentina&apos;s landscapes and wildlife with guided photography sessions.
-                </p>
               </div>
 
-              {/* Cultural Excursions */}
-              <div className="text-center p-6 bg-white rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <MdMuseum className="w-8 h-8 text-white" />
+              {/* Right Side - Services Grid */}
+              <div className="space-y-6">
+                
+                {/* Wildlife Photography */}
+                <div className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-xl">📸</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-stone-800 mb-2">Wildlife Photography</h3>
+                    <p className="text-stone-600">
+                      Capture Argentina&apos;s landscapes and wildlife with guided photography sessions.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-stone-800 mb-3">Cultural Excursions</h3>
-                <p className="text-stone-600">
-                  Optional cultural tours exploring local traditions, markets, and historical sites.
-                </p>
-              </div>
 
-              {/* Comprehensive Hunting Services */}
-              <div className="text-center p-6 bg-white rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">⚡</span>
+                {/* Cultural Excursions */}
+                <div className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MdMuseum className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-stone-800 mb-2">Cultural Excursions</h3>
+                    <p className="text-stone-600">
+                      Optional cultural tours exploring local traditions, markets, and historical sites.
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-stone-800 mb-3">Full-Service Expeditions</h3>
-                <p className="text-stone-600">
-                  All-inclusive hunting packages with professional guides, equipment, and accommodations.
-                </p>
+
+                {/* Gourmet Dining */}
+                <div className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="w-12 h-12 bg-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MdDinnerDining className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-stone-800 mb-2">Gourmet Argentine Cuisine</h3>
+                    <p className="text-stone-600">
+                      Traditional gaucho asado, premium Argentine beef, and fine Malbec wines.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Full-Service Expeditions */}
+                <div className="flex items-start space-x-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Target className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-stone-800 mb-2">Full-Service Expeditions</h3>
+                    <p className="text-stone-600">
+                      All-inclusive hunting packages with professional guides, equipment, and accommodations.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
