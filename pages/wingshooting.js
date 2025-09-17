@@ -338,17 +338,23 @@ export default function Wingshooting() {
               </div>
 
               {/* Entre Rios */}
-              <div className="bg-stone-50 rounded-lg overflow-hidden shadow-md">
-                <div className="h-64">
+              <div className="accommodation-card group bg-stone-50 rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <div className="accommodation-image-wrapper h-64 overflow-hidden relative">
                   <Image
                     src="/images/accomodation2.webp"
                     alt="Entre Rios Hunting Lodge"
                     width={400}
                     height={256}
-                    className="w-full h-full object-cover"
+                    className="accommodation-image w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
                   />
+                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-bold text-xl mb-1">Entre Ríos Territory</h3>
+                      <p className="text-white/90 text-sm">World-renowned dove hunting destination</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 transition-all duration-300 group-hover:bg-stone-100">
                   <h3 className="text-xl font-semibold text-stone-800 mb-3">Entre Ríos</h3>
                   <p className="text-stone-600 mb-4">(Doves)</p>
                   <p className="text-stone-700">
@@ -359,17 +365,23 @@ export default function Wingshooting() {
               </div>
 
               {/* Cordoba */}
-              <div className="bg-stone-50 rounded-lg overflow-hidden shadow-md">
-                <div className="h-64">
+              <div className="accommodation-card group bg-stone-50 rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <div className="accommodation-image-wrapper h-64 overflow-hidden relative">
                   <Image
                     src="/images/accomodation3.webp"
                     alt="Cordoba Hunting Lodge"
                     width={400}
                     height={256}
-                    className="w-full h-full object-cover"
+                    className="accommodation-image w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
                   />
+                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-bold text-xl mb-1">Córdoba Territory</h3>
+                      <p className="text-white/90 text-sm">Dove shooting capital of the world</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 transition-all duration-300 group-hover:bg-stone-100">
                   <h3 className="text-xl font-semibold text-stone-800 mb-3">Córdoba</h3>
                   <p className="text-stone-600 mb-4">(Doves)</p>
                   <p className="text-stone-700">
@@ -472,12 +484,12 @@ Call ARG: +54 9 11 69274103
         .fade-in-section {
           opacity: 1;
           transform: translateY(0);
-          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .fade-in-section:not(.animated) {
           opacity: 0;
-          transform: translateY(60px);
+          transform: translateY(40px);
         }
         
         .fade-in-section.animated {
@@ -487,26 +499,26 @@ Call ARG: +54 9 11 69274103
         
         .slide-up-stagger-1 {
           opacity: 0;
-          transform: translateY(40px);
-          animation: slideUpFade 0.8s ease-out 0.3s forwards;
+          transform: translateY(30px);
+          animation: slideUpFade 0.6s ease-out 0.2s forwards;
         }
         
         .slide-up-stagger-2 {
           opacity: 0;
-          transform: translateY(40px);
-          animation: slideUpFade 0.8s ease-out 0.5s forwards;
+          transform: translateY(30px);
+          animation: slideUpFade 0.6s ease-out 0.3s forwards;
         }
         
         .slide-up-stagger-3 {
           opacity: 0;
-          transform: translateY(40px);
-          animation: slideUpFade 0.8s ease-out 0.7s forwards;
+          transform: translateY(30px);
+          animation: slideUpFade 0.6s ease-out 0.4s forwards;
         }
         
         .slide-up-stagger-4 {
           opacity: 0;
-          transform: translateY(40px);
-          animation: slideUpFade 0.8s ease-out 0.9s forwards;
+          transform: translateY(30px);
+          animation: slideUpFade 0.6s ease-out 0.5s forwards;
         }
         
         /* Hover Effects */
@@ -595,6 +607,72 @@ Call ARG: +54 9 11 69274103
         .image-hover:hover {
           transform: scale(1.05);
           filter: brightness(1.1);
+        }
+        
+        /* Accommodation Card Effects */
+        .accommodation-card {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+        }
+        
+        .accommodation-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .accommodation-image-wrapper {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .accommodation-image {
+          transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .accommodation-overlay {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Mobile Touch Effects */
+        @media (pointer: coarse) {
+          .accommodation-card:active {
+            transform: translateY(-4px) scale(0.98);
+            box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3);
+          }
+          
+          .accommodation-card:active .accommodation-image {
+            transform: scale(1.08);
+            brightness: 1.2;
+          }
+          
+          .accommodation-card:active .accommodation-overlay {
+            opacity: 1;
+          }
+          
+          /* Touch feedback with a subtle pulse */
+          .accommodation-card:active::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(234, 88, 12, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            animation: touchPulse 0.3s ease-out;
+          }
+        }
+        
+        @keyframes touchPulse {
+          0% {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          100% {
+            opacity: 0;
+            transform: scale(1.1);
+          }
         }
         
         /* Responsive Design */

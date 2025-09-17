@@ -528,24 +528,40 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="rounded-lg overflow-hidden shadow-md">
-                <Image
-                  src="/images/accomodation2.webp"
-                  alt="Rosybill Outfitters Lodge 2"
-                  width={400}
-                  height={300}
-                  className="w-full h-48 object-cover"
-                />
+              <div className="accommodation-card group rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <div className="accommodation-image-wrapper overflow-hidden">
+                  <Image
+                    src="/images/accomodation2.webp"
+                    alt="Rosybill Outfitters Lodge 2"
+                    width={400}
+                    height={300}
+                    className="accommodation-image w-full h-48 object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
+                  />
+                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-bold text-lg mb-1">Entre Ríos Lodge</h3>
+                      <p className="text-white/90 text-sm">Premium hunting accommodation</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="rounded-lg overflow-hidden shadow-md">
-                <Image
-                  src="/images/accomodation3.webp"
-                  alt="Rosybill Outfitters Lodge 3"
-                  width={400}
-                  height={300}
-                  className="w-full h-48 object-cover"
-                />
+              <div className="accommodation-card group rounded-lg overflow-hidden shadow-md cursor-pointer">
+                <div className="accommodation-image-wrapper overflow-hidden">
+                  <Image
+                    src="/images/accomodation3.webp"
+                    alt="Rosybill Outfitters Lodge 3"
+                    width={400}
+                    height={300}
+                    className="accommodation-image w-full h-48 object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
+                  />
+                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-bold text-lg mb-1">Córdoba Lodge</h3>
+                      <p className="text-white/90 text-sm">World-class dove hunting</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -718,12 +734,12 @@ export default function Home() {
                 .fade-in-section {
                   opacity: 1;
                   transform: translateY(0);
-                  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+                  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
                 }
                 
                 .fade-in-section:not(.animated) {
                   opacity: 0;
-                  transform: translateY(60px);
+                  transform: translateY(40px);
                 }
                 
                 .fade-in-section.animated {
@@ -733,26 +749,26 @@ export default function Home() {
                 
                 .slide-up-stagger-1 {
                   opacity: 0;
-                  transform: translateY(40px);
-                  animation: slideUpFade 0.8s ease-out 0.3s forwards;
+                  transform: translateY(30px);
+                  animation: slideUpFade 0.6s ease-out 0.2s forwards;
                 }
                 
                 .slide-up-stagger-2 {
                   opacity: 0;
-                  transform: translateY(40px);
-                  animation: slideUpFade 0.8s ease-out 0.5s forwards;
+                  transform: translateY(30px);
+                  animation: slideUpFade 0.6s ease-out 0.3s forwards;
                 }
                 
                 .slide-up-stagger-3 {
                   opacity: 0;
-                  transform: translateY(40px);
-                  animation: slideUpFade 0.8s ease-out 0.7s forwards;
+                  transform: translateY(30px);
+                  animation: slideUpFade 0.6s ease-out 0.4s forwards;
                 }
                 
                 .slide-up-stagger-4 {
                   opacity: 0;
-                  transform: translateY(40px);
-                  animation: slideUpFade 0.8s ease-out 0.9s forwards;
+                  transform: translateY(30px);
+                  animation: slideUpFade 0.6s ease-out 0.5s forwards;
                 }
                 
                 /* Hover Effects */
@@ -839,6 +855,72 @@ export default function Home() {
                 .image-container:hover img {
                   transform: scale(1.05);
                   filter: brightness(1.1);
+                }
+                
+                /* Accommodation Card Effects */
+                .accommodation-card {
+                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                  position: relative;
+                }
+                
+                .accommodation-card:hover {
+                  transform: translateY(-8px);
+                  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+                }
+                
+                .accommodation-image-wrapper {
+                  position: relative;
+                  overflow: hidden;
+                }
+                
+                .accommodation-image {
+                  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                .accommodation-overlay {
+                  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+                
+                /* Mobile Touch Effects */
+                @media (pointer: coarse) {
+                  .accommodation-card:active {
+                    transform: translateY(-4px) scale(0.98);
+                    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3);
+                  }
+                  
+                  .accommodation-card:active .accommodation-image {
+                    transform: scale(1.08);
+                    brightness: 1.2;
+                  }
+                  
+                  .accommodation-card:active .accommodation-overlay {
+                    opacity: 1;
+                  }
+                  
+                  /* Touch feedback with a subtle pulse */
+                  .accommodation-card:active::after {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(circle, rgba(234, 88, 12, 0.1) 0%, transparent 70%);
+                    pointer-events: none;
+                    animation: touchPulse 0.3s ease-out;
+                  }
+                }
+                
+                @keyframes touchPulse {
+                  0% {
+                    opacity: 0;
+                    transform: scale(0.8);
+                  }
+                  50% {
+                    opacity: 1;
+                    transform: scale(1);
+                  }
+                  100% {
+                    opacity: 0;
+                    transform: scale(1.1);
+                  }
                 }
                 
                 /* Responsive Design */
