@@ -168,18 +168,7 @@ export default function AboutUs() {
                 <h2 className="text-3xl font-bold text-stone-800 mb-6">Our Story</h2>
                 <div className="space-y-6 text-stone-600 leading-relaxed">
                   <p className="text-lg">
-                    Founded over 30 years ago, Rosybill Outfitters has established itself as Argentina&apos;s premier hunting outfitter, 
-                    specializing in world-class wingshooting and bird hunting experiences.
-                  </p>
-                  
-                  <p>
-                    Our passion for hunting and deep respect for Argentina&apos;s natural heritage drives us to provide authentic, 
-                    sustainable hunting experiences that connect our guests with the country&apos;s rich outdoor traditions.
-                  </p>
-                  
-                  <p>
-                    From the wetlands of Buenos Aires to the dove shooting fields of Córdoba and Entre Ríos, 
-                    we operate exclusive hunting concessions that offer some of the finest hunting opportunities in South America.
+                    My name is Maxi, my story begins in a small town 1 hour from Buenos Aires where my grandparents lived, who was the one who led me to become a fan of duck and dove hunting. I started in 1999 when I was only 14 years old, now I am 40, at that time I met a group of people who were dedicated to bringing hunters from the United States to Argentina. It seemed like a great idea to me and that&apos;s when I started to investigate and with a lot of good and bad advice, we began to fill the small and large lagoons with the gold decoy (corn) and that&apos;s when everything fit, clouds and clouds of ducks in each blind. Duck decoys and callers made a big difference. and each group that came left me with their knowledge and advice. Hunters arrive as clients and leave as friends! We work so that your stay in Argentina is unique and unmatched.
                   </p>
                 </div>
               </div>
