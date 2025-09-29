@@ -53,14 +53,23 @@ export default function AboutUs() {
             <div className="flex justify-between items-center py-4">
               {/* Logo */}
               <Link href="/">
-                <div className="flex items-center cursor-pointer hover-glow group">
-                  <Image 
-                    src="/images/rosybill-outfitters-logo.jpeg" 
-                    alt="Rosybill Outfitters Logo" 
-                    width={120} 
-                    height={60} 
-                    className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
-                  />
+                <div className="flex items-center cursor-pointer hover-glow group relative">
+                  {/* Decorative hunting-themed glow effect */}
+                  <div className="absolute -inset-2 bg-gradient-to-r from-orange-600/20 via-amber-500/30 to-orange-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+                  
+                  {/* Logo container with refined effects */}
+                  <div className="relative">
+                    <Image 
+                      src="/images/rosybill-outfitters-logo.jpeg" 
+                      alt="Rosybill Outfitters Logo" 
+                      width={120} 
+                      height={60} 
+                      className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float filter group-hover:brightness-110 group-hover:drop-shadow-lg"
+                    />
+                    
+                    {/* Subtle hunting badge decoration */}
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full opacity-80 group-hover:scale-125 group-hover:bg-amber-400 transition-all duration-300 badge-float"></div>
+                  </div>
                   <div className="ml-2 sm:ml-3">
                     <div className="text-sm sm:text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
                       Rosybill Outfitters
@@ -145,6 +154,32 @@ export default function AboutUs() {
                    backgroundPosition: 'center'
                  }}>
           
+          {/* Decorative hunting elements overlay */}
+          <div className="absolute inset-0 z-0">
+            {/* Subtle crosshair decoration in corners */}
+            <div className="absolute top-8 left-8 w-12 h-12 crosshair-animate">
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            <div className="absolute top-8 right-8 w-12 h-12 crosshair-animate" style={{animationDelay: '0.5s'}}>
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            <div className="absolute bottom-8 left-8 w-12 h-12 crosshair-animate" style={{animationDelay: '1s'}}>
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            <div className="absolute bottom-8 right-8 w-12 h-12 crosshair-animate" style={{animationDelay: '1.5s'}}>
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            
+            {/* Floating decorative elements */}
+            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-500 rounded-full opacity-60 animate-pulse"></div>
+            <div className="absolute top-3/4 right-1/3 w-3 h-3 bg-orange-600 rounded-full opacity-50 animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-1/3 left-2/3 w-1.5 h-1.5 bg-amber-400 rounded-full opacity-70 animate-pulse" style={{animationDelay: '2s'}}></div>
+          </div>
+          
           <div className="relative z-10 flex items-center justify-center h-full">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight slide-up-stagger-1">
@@ -166,22 +201,79 @@ export default function AboutUs() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl font-bold text-stone-800 mb-6">Our Story</h2>
-                <div className="space-y-6 text-stone-600 leading-relaxed">
+                
+                {/* Desktop version - Full story */}
+                <div className="hidden md:block space-y-6 text-stone-600 leading-relaxed">
                   <p className="text-lg">
                     My name is Maxi, my story begins in a small town 1 hour from Buenos Aires where my grandparents lived, who was the one who led me to become a fan of duck and dove hunting. I started in 1999 when I was only 14 years old, now I am 40, at that time I met a group of people who were dedicated to bringing hunters from the United States to Argentina. It seemed like a great idea to me and that&apos;s when I started to investigate and with a lot of good and bad advice, we began to fill the small and large lagoons with the gold decoy (corn) and that&apos;s when everything fit, clouds and clouds of ducks in each blind. Duck decoys and callers made a big difference. and each group that came left me with their knowledge and advice. Hunters arrive as clients and leave as friends! We work so that your stay in Argentina is unique and unmatched.
+                  </p>
+                </div>
+
+                {/* Mobile version - Condensed story */}
+                <div className="md:hidden space-y-4 text-stone-600">
+                  <p className="text-base">
+                    I&apos;m Maxi. Started hunting at 14 near Buenos Aires with my grandparents. 25+ years bringing international hunters to Argentina.
+                  </p>
+                  <p className="text-sm font-medium text-stone-700">
+                    &ldquo;Hunters arrive as clients, leave as friends!&rdquo;
                   </p>
                 </div>
               </div>
 
               <div className="order-1 lg:order-2">
-                <div className="h-96 rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/images/cazadores_team.jpg"
-                    alt="Rosybill Outfitters Professional Hunting Team"
-                    width={500}
-                    height={384}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="relative group">
+                  {/* Military-themed gradient border */}
+                  <div className="absolute -inset-3 bg-gradient-to-br from-green-800 via-olive-700 to-stone-900 rounded-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Rifle scope crosshairs in corners */}
+                  <div className="absolute -top-2 -left-2 w-8 h-8 opacity-60 group-hover:opacity-100 transition-all duration-500 targeting-scope">
+                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-green-500 transform -translate-y-1/2"></div>
+                    <div className="absolute left-1/2 top-0 w-0.5 h-full bg-green-500 transform -translate-x-1/2"></div>
+                    <div className="absolute top-1/2 left-1/2 w-4 h-4 border-2 border-green-500 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 opacity-60 group-hover:opacity-100 transition-all duration-500 targeting-scope" style={{animationDelay: '0.3s'}}>
+                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-green-500 transform -translate-y-1/2"></div>
+                    <div className="absolute left-1/2 top-0 w-0.5 h-full bg-green-500 transform -translate-x-1/2"></div>
+                    <div className="absolute top-1/2 left-1/2 w-4 h-4 border-2 border-green-500 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+                  </div>
+                  
+                  {/* Main image container */}
+                  <div className="relative h-96 rounded-lg overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
+                    {/* Bullet impact points */}
+                    <div className="absolute top-6 left-6 w-3 h-3 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 bullet-impact z-10"></div>
+                    <div className="absolute top-12 right-8 w-2 h-2 bg-orange-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 bullet-impact z-10" style={{animationDelay: '0.2s'}}></div>
+                    <div className="absolute bottom-16 left-12 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 bullet-impact z-10" style={{animationDelay: '0.4s'}}></div>
+                    
+                    {/* Range finder lines */}
+                    <div className="absolute top-0 left-1/2 w-0.5 h-full bg-gradient-to-b from-transparent via-green-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-x-1/2 range-line"></div>
+                    <div className="absolute left-0 top-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-green-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-1/2 range-line" style={{animationDelay: '0.2s'}}></div>
+                    
+                    {/* Image with professional overlay effect */}
+                    <Image
+                      src="/images/cazadores_team.jpg"
+                      alt="Rosybill Outfitters Professional Hunting Team"
+                      width={500}
+                      height={384}
+                      className="w-full h-full object-cover filter group-hover:brightness-110 group-hover:contrast-105 transition-all duration-500"
+                    />
+                    
+                    {/* Military-themed overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-green-900/30 via-transparent to-olive-900/20 opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    
+                    {/* Professional badge */}
+                    <div className="absolute bottom-4 right-4 bg-green-700/90 backdrop-blur-sm text-white px-3 py-1 rounded text-xs font-mono opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      ⚫ EXPERT GUIDES
+                    </div>
+                    
+                    {/* Years of experience indicator */}
+                    <div className="absolute top-4 right-4 bg-green-800/80 backdrop-blur-sm text-green-200 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-x-4 group-hover:translate-x-0">
+                      📊 30+ YEARS
+                    </div>
+                  </div>
+                  
+                  {/* Ammunition decorative elements */}
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-amber-600 transform rotate-45 opacity-80 group-hover:scale-110 transition-all duration-300 bullet-shell"></div>
+                  <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-brass-500 transform rotate-12 opacity-70 group-hover:scale-110 transition-all duration-300 bullet-shell" style={{animationDelay: '0.5s'}}></div>
                 </div>
               </div>
             </div>
@@ -204,8 +296,13 @@ export default function AboutUs() {
                   <Target className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-stone-800 mb-3">Duck & Waterfowl Hunting</h3>
-                <p className="text-stone-600">
+                {/* Desktop description */}
+                <p className="hidden md:block text-stone-600">
                   Premium duck and waterfowl hunting in Argentina&apos;s wetlands, marshes, and private reserves.
+                </p>
+                {/* Mobile description */}
+                <p className="md:hidden text-stone-600 text-sm">
+                  Premium wetlands hunting
                 </p>
               </div>
 
@@ -214,8 +311,13 @@ export default function AboutUs() {
                   <GiFeatheredWing className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-semibold text-stone-800 mb-3">Wingshooting</h3>
-                <p className="text-stone-600">
+                {/* Desktop description */}
+                <p className="hidden md:block text-stone-600">
                   World-record dove shooting, duck hunting, and perdiz in Argentina&apos;s most productive flyways.
+                </p>
+                {/* Mobile description */}
+                <p className="md:hidden text-stone-600 text-sm">
+                  World-class dove & perdiz shooting
                 </p>
               </div>
 
@@ -471,6 +573,83 @@ export default function AboutUs() {
           color: #ea580c;
         }
         
+        /* Hunting-themed decorative effects */
+        .border-t-3 { border-top-width: 3px; }
+        .border-l-3 { border-left-width: 3px; }
+        .border-r-3 { border-right-width: 3px; }
+        .border-b-3 { border-bottom-width: 3px; }
+        
+        /* Enhanced image hover effects */
+        .group:hover .filter {
+          filter: brightness(1.1) contrast(1.05) saturate(1.1);
+        }
+        
+        /* Crosshair animation for hero decorations */
+        @keyframes crosshairGlow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        
+        .crosshair-animate {
+          animation: crosshairGlow 3s ease-in-out infinite;
+        }
+        
+        /* Hunting badge floating effect */
+        @keyframes badgeFloat {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-2px) rotate(1deg); }
+          66% { transform: translateY(2px) rotate(-1deg); }
+        }
+        
+        .badge-float {
+          animation: badgeFloat 4s ease-in-out infinite;
+        }
+        
+                /* Decorative gradient borders */
+                .hunting-gradient-border {
+                  background: linear-gradient(45deg, #ea580c, #d97706, #92400e);
+                  padding: 3px;
+                }
+                
+                /* UNIQUE TARGETING EFFECTS - Professional Guides Theme */
+                @keyframes targetingScope {
+                  0%, 100% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+                  50% { opacity: 1; transform: scale(1.1) rotate(2deg); }
+                }
+                
+                .targeting-scope {
+                  animation: targetingScope 3s ease-in-out infinite;
+                }
+                
+                @keyframes bulletImpact {
+                  0% { opacity: 0; transform: scale(0.5); }
+                  50% { opacity: 1; transform: scale(1.2); }
+                  100% { opacity: 0.8; transform: scale(1); }
+                }
+                
+                .bullet-impact {
+                  animation: bulletImpact 0.5s ease-out forwards;
+                }
+                
+                @keyframes rangeLine {
+                  0% { opacity: 0; }
+                  50% { opacity: 0.6; }
+                  100% { opacity: 0.4; }
+                }
+                
+                .range-line {
+                  animation: rangeLine 2s ease-in-out infinite;
+                }
+                
+                @keyframes bulletShell {
+                  0%, 100% { transform: rotate(0deg) scale(1); }
+                  50% { transform: rotate(180deg) scale(1.1); }
+                }
+                
+                .bullet-shell {
+                  animation: bulletShell 4s ease-in-out infinite;
+                }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
           .text-5xl { font-size: 2.25rem; }
@@ -478,6 +657,54 @@ export default function AboutUs() {
           
           .fade-in-section {
             animation-delay: 0.1s;
+          }
+          
+          /* Simplify decorative elements on mobile */
+          .absolute.w-12.h-12 {
+            width: 2rem;
+            height: 2rem;
+          }
+          
+          /* Prevent horizontal overflow on mobile */
+          body, html {
+            overflow-x: hidden;
+          }
+          
+          /* Hide or reduce decorative elements that extend outside containers */
+          .absolute[class*="-inset"],
+          .absolute[class*="-top"],
+          .absolute[class*="-left"],
+          .absolute[class*="-right"],
+          .absolute[class*="-bottom"] {
+            display: none !important;
+          }
+          
+          /* Keep only essential badges and reduce their size */
+          .absolute[class*="bottom-4"][class*="right-4"],
+          .absolute[class*="top-4"][class*="right-4"] {
+            display: block !important;
+            transform: scale(0.8);
+          }
+          
+          /* Reduce targeting and military elements */
+          .targeting-scope,
+          .bullet-impact,
+          .range-line,
+          .bullet-shell {
+            display: none !important;
+          }
+          
+          /* Reduce spacing and padding to prevent overflow */
+          .relative.group {
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+          
+          /* Ensure all images stay within bounds */
+          .relative.h-96,
+          .relative.overflow-hidden {
+            max-width: 100% !important;
+            overflow: hidden !important;
           }
         }
       `}</style>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -137,14 +138,23 @@ export default function Home() {
             <div className="flex justify-between items-center py-4">
               {/* Logo */}
               <Link href="/">
-                <div className="flex items-center cursor-pointer hover-glow group">
-                  <Image 
-                    src="/images/rosybill-outfitters-logo.jpeg" 
-                    alt="Rosybill Outfitters Logo" 
-                    width={120} 
-                    height={60} 
-                    className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float"
-                  />
+                <div className="flex items-center cursor-pointer hover-glow group relative">
+                  {/* Decorative hunting-themed glow effect */}
+                  <div className="absolute -inset-2 bg-gradient-to-r from-orange-600/20 via-amber-500/30 to-orange-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+                  
+                  {/* Logo container with refined effects */}
+                  <div className="relative">
+                    <Image 
+                      src="/images/rosybill-outfitters-logo.jpeg" 
+                      alt="Rosybill Outfitters Logo" 
+                      width={120} 
+                      height={60} 
+                      className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 group-hover:scale-110 animate-float filter group-hover:brightness-110 group-hover:drop-shadow-lg"
+                    />
+                    
+                    {/* Subtle hunting badge decoration */}
+                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full opacity-80 group-hover:scale-125 group-hover:bg-amber-400 transition-all duration-300 badge-float"></div>
+                  </div>
                   <div className="ml-2 sm:ml-3">
                     <div className="text-sm sm:text-lg font-bold text-stone-800 transition-all duration-300 group-hover:text-orange-700">
                       Rosybill Outfitters
@@ -228,6 +238,32 @@ export default function Home() {
                    backgroundSize: 'cover',
                    backgroundPosition: 'center'
                  }}>
+          
+          {/* Decorative hunting elements overlay */}
+          <div className="absolute inset-0 z-0">
+            {/* Subtle crosshair decoration in corners */}
+            <div className="absolute top-8 left-8 w-12 h-12 crosshair-animate">
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            <div className="absolute top-8 right-8 w-12 h-12 crosshair-animate" style={{animationDelay: '0.5s'}}>
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            <div className="absolute bottom-8 left-8 w-12 h-12 crosshair-animate" style={{animationDelay: '1s'}}>
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            <div className="absolute bottom-8 right-8 w-12 h-12 crosshair-animate" style={{animationDelay: '1.5s'}}>
+              <div className="absolute top-1/2 left-0 w-full h-0.5 bg-orange-400 transform -translate-y-1/2"></div>
+              <div className="absolute left-1/2 top-0 w-0.5 h-full bg-orange-400 transform -translate-x-1/2"></div>
+            </div>
+            
+            {/* Floating decorative elements */}
+            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-500 rounded-full opacity-60 animate-pulse"></div>
+            <div className="absolute top-3/4 right-1/3 w-3 h-3 bg-orange-600 rounded-full opacity-50 animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-1/3 left-2/3 w-1.5 h-1.5 bg-amber-400 rounded-full opacity-70 animate-pulse" style={{animationDelay: '2s'}}></div>
+          </div>
           
           <div className="relative z-10 flex items-center justify-center h-full text-center">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -342,21 +378,63 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">
-                <div className="h-96 rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/images/cazadores_team.jpg"
-                    alt="Rosybill Outfitters Team - Professional hunting guides and staff"
-                    width={500}
-                    height={384}
-                    className="w-full h-full object-cover "
-                    style={{ objectPosition: 'center 80%' }}
-                  />
+                <div className="relative group">
+                  {/* Military-themed gradient border */}
+                  <div className="absolute -inset-3 bg-gradient-to-br from-green-800 via-olive-700 to-stone-900 rounded-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Rifle scope crosshairs in corners */}
+                  <div className="absolute -top-2 -left-2 w-8 h-8 opacity-60 group-hover:opacity-100 transition-all duration-500 targeting-scope">
+                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-green-500 transform -translate-y-1/2"></div>
+                    <div className="absolute left-1/2 top-0 w-0.5 h-full bg-green-500 transform -translate-x-1/2"></div>
+                    <div className="absolute top-1/2 left-1/2 w-4 h-4 border-2 border-green-500 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 opacity-60 group-hover:opacity-100 transition-all duration-500 targeting-scope" style={{animationDelay: '0.3s'}}>
+                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-green-500 transform -translate-y-1/2"></div>
+                    <div className="absolute left-1/2 top-0 w-0.5 h-full bg-green-500 transform -translate-x-1/2"></div>
+                    <div className="absolute top-1/2 left-1/2 w-4 h-4 border-2 border-green-500 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
+                  </div>
+                  
+                  {/* Main image container */}
+                  <div className="relative h-96 rounded-lg overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
+                    {/* Bullet impact points */}
+                    <div className="absolute top-6 left-6 w-3 h-3 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 bullet-impact z-10"></div>
+                    <div className="absolute top-12 right-8 w-2 h-2 bg-orange-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 bullet-impact z-10" style={{animationDelay: '0.2s'}}></div>
+                    <div className="absolute bottom-16 left-12 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 bullet-impact z-10" style={{animationDelay: '0.4s'}}></div>
+                    
+                    {/* Range finder lines */}
+                    <div className="absolute top-0 left-1/2 w-0.5 h-full bg-gradient-to-b from-transparent via-green-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-x-1/2 range-line"></div>
+                    <div className="absolute left-0 top-1/2 w-full h-0.5 bg-gradient-to-r from-transparent via-green-400/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-1/2 range-line" style={{animationDelay: '0.2s'}}></div>
+                    
+                    {/* Image with professional overlay effect */}
+                    <Image
+                      src="/images/cazadores_team.jpg"
+                      alt="Rosybill Outfitters Team - Professional hunting guides and staff"
+                      width={500}
+                      height={384}
+                      className="w-full h-full object-cover filter group-hover:brightness-110 group-hover:contrast-105 transition-all duration-500"
+                      style={{ objectPosition: 'center 80%' }}
+                    />
+                    
+                    {/* Military-themed overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-green-900/30 via-transparent to-olive-900/20 opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    
+                    {/* Professional badge */}
+                    <div className="absolute bottom-4 right-4 bg-green-700/90 backdrop-blur-sm text-white px-3 py-1 rounded text-xs font-mono opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      ⚫ EXPERT GUIDES
+                    </div>
+                  </div>
+                  
+                  {/* Ammunition decorative elements */}
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-amber-600 transform rotate-45 opacity-80 group-hover:scale-110 transition-all duration-300 bullet-shell"></div>
+                  <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-brass-500 transform rotate-12 opacity-70 group-hover:scale-110 transition-all duration-300 bullet-shell" style={{animationDelay: '0.5s'}}></div>
                 </div>
               </div>
 
               <div className="order-1 lg:order-2">
                 <h2 className="text-3xl font-bold text-stone-800 mb-6">Expert Hunting Guides</h2>
-                <div className="space-y-6 text-stone-600 leading-relaxed">
+                
+                {/* Desktop version - Full text */}
+                <div className="hidden md:block space-y-6 text-stone-600 leading-relaxed">
                   <p className="text-lg">
                     30+ years of hunting excellence in Argentina&apos;s premier game territories. 
                     Our professional guides are expert trackers and marksmen ensuring authentic hunting experiences.
@@ -377,6 +455,27 @@ export default function Home() {
                     View Territories
                   </button>
                 </div>
+
+                {/* Mobile version - Condensed text */}
+                <div className="md:hidden space-y-4 text-stone-600">
+                  <p className="text-base">
+                    30+ years experience in Argentina&apos;s best hunting territories with expert professional guides.
+                  </p>
+                  
+                  <div>
+                    <h3 className="text-lg font-semibold text-stone-800 mb-2">Prime Locations</h3>
+                    <p className="text-sm">
+                      Buenos Aires wetlands, Córdoba dove shooting, Entre Ríos premium territories.
+                    </p>
+                  </div>
+                  
+                  <button 
+                    onClick={() => window.location.href = '/wingshooting'}
+                    className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded transition-colors duration-300 cursor-pointer text-sm"
+                  >
+                    View Territories
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -389,35 +488,69 @@ export default function Home() {
               <div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-stone-800 mb-6 sm:mb-8">Hunting Services</h2>
                 
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded-lg flex items-center justify-center">
-                      <Target className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                {/* Desktop version - Full descriptions */}
+                <div className="hidden md:block space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center">
+                      <Target className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-stone-800 mb-1 sm:mb-2">Duck Hunting</h3>
-                      <p className="text-sm sm:text-base text-stone-600">Premium waterfowl hunting in Argentina&apos;s wetlands and marshes</p>
+                      <h3 className="text-xl font-semibold text-stone-800 mb-2">Duck Hunting</h3>
+                      <p className="text-base text-stone-600">Premium waterfowl hunting in Argentina&apos;s wetlands and marshes</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-lg flex items-center justify-center">
-                      <Star className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center">
+                      <Star className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-stone-800 mb-1 sm:mb-2">Bird Hunting</h3>
-                      <p className="text-sm sm:text-base text-stone-600">World-class dove shooting, duck hunting, and perdiz in prime flyways</p>
+                      <h3 className="text-xl font-semibold text-stone-800 mb-2">Bird Hunting</h3>
+                      <p className="text-base text-stone-600">World-class dove shooting, duck hunting, and perdiz in prime flyways</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start space-x-3 sm:space-x-4">
-                    <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-amber-600 rounded-lg flex items-center justify-center">
-                      <Building className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <div className="flex items-start space-x-4">
+                    <div className="flex-shrink-0 w-12 h-12 bg-amber-600 rounded-lg flex items-center justify-center">
+                      <Building className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-stone-800 mb-1 sm:mb-2">Hunting Lodges</h3>
-                      <p className="text-sm sm:text-base text-stone-600">Traditional Argentine estancias with modern amenities and gourmet cuisine</p>
+                      <h3 className="text-xl font-semibold text-stone-800 mb-2">Hunting Lodges</h3>
+                      <p className="text-base text-stone-600">Traditional Argentine estancias with modern amenities and gourmet cuisine</p>
                     </div>
+                  </div>
+                </div>
+
+                {/* Mobile version - Card layout */}
+                <div className="md:hidden space-y-4">
+                  <div className="bg-white rounded-lg p-4 shadow-sm border border-stone-200">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="flex-shrink-0 w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center">
+                        <Target className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-stone-800">Duck Hunting</h3>
+                    </div>
+                    <p className="text-sm text-stone-600 ml-13">Premium wetlands hunting in Argentina&apos;s marshes</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 shadow-sm border border-stone-200">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="flex-shrink-0 w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
+                        <Star className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-stone-800">Bird Hunting</h3>
+                    </div>
+                    <p className="text-sm text-stone-600 ml-13">World-class dove shooting and perdiz</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 shadow-sm border border-stone-200">
+                    <div className="flex items-center space-x-3 mb-2">
+                      <div className="flex-shrink-0 w-10 h-10 bg-amber-600 rounded-lg flex items-center justify-center">
+                        <Building className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-stone-800">Hunting Lodges</h3>
+                    </div>
+                    <p className="text-sm text-stone-600 ml-13">Traditional Argentine estancias</p>
                   </div>
                 </div>
 
@@ -430,15 +563,66 @@ export default function Home() {
               </div>
 
               <div>
-                <div className="h-[28rem] rounded-lg overflow-hidden shadow-lg">
-                  <Image
-                    src="/images/maxi_patos.jpg"
-                    alt="Duck hunting experience - Professional guide with ducks at Rosybill Outfitters"
-                    width={500}
-                    height={384}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: 'center 40%' }}
-                  />
+                <div className="relative group">
+                  {/* Water-themed gradient border */}
+                  <div className="absolute -inset-3 bg-gradient-to-br from-blue-600 via-cyan-700 to-teal-800 rounded-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Flying duck silhouettes */}
+                  <div className="absolute -top-4 -left-4 opacity-0 group-hover:opacity-80 transition-all duration-700 flying-duck">
+                    <div className="w-4 h-2 bg-slate-600 duck-silhouette transform -rotate-12" style={{clipPath: 'polygon(0% 50%, 20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%)'}}></div>
+                  </div>
+                  <div className="absolute -top-2 -right-6 opacity-0 group-hover:opacity-80 transition-all duration-700 flying-duck" style={{animationDelay: '0.5s'}}>
+                    <div className="w-3 h-1.5 bg-slate-700 duck-silhouette transform rotate-6" style={{clipPath: 'polygon(0% 50%, 20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%)'}}></div>
+                  </div>
+                  <div className="absolute -bottom-4 -right-4 opacity-0 group-hover:opacity-80 transition-all duration-700 flying-duck" style={{animationDelay: '1s'}}>
+                    <div className="w-3.5 h-2 bg-slate-600 duck-silhouette transform -rotate-3" style={{clipPath: 'polygon(0% 50%, 20% 0%, 80% 0%, 100% 50%, 80% 100%, 20% 100%)'}}></div>
+                  </div>
+                  
+                  {/* Water ripples around image */}
+                  <div className="absolute -inset-6 opacity-0 group-hover:opacity-60 transition-all duration-1000 pointer-events-none">
+                    <div className="absolute top-1/2 left-1/2 w-16 h-16 border-2 border-blue-400 rounded-full transform -translate-x-1/2 -translate-y-1/2 water-ripple"></div>
+                    <div className="absolute top-1/2 left-1/2 w-24 h-24 border border-cyan-400 rounded-full transform -translate-x-1/2 -translate-y-1/2 water-ripple" style={{animationDelay: '0.3s'}}></div>
+                    <div className="absolute top-1/2 left-1/2 w-32 h-32 border border-blue-300 rounded-full transform -translate-x-1/2 -translate-y-1/2 water-ripple" style={{animationDelay: '0.6s'}}></div>
+                  </div>
+                  
+                  {/* Main image container */}
+                  <div className="relative h-[28rem] rounded-lg overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
+                    {/* Water drops */}
+                    <div className="absolute top-8 left-1/4 w-1.5 h-1.5 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 water-drop z-10"></div>
+                    <div className="absolute top-12 right-1/3 w-2 h-2 bg-cyan-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 water-drop z-10" style={{animationDelay: '0.3s'}}></div>
+                    <div className="absolute bottom-20 left-2/3 w-1.5 h-1.5 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 water-drop z-10" style={{animationDelay: '0.6s'}}></div>
+                    
+                    {/* Wetland reeds decoration */}
+                    <div className="absolute top-0 left-4 w-1 h-16 bg-green-600 rounded-full opacity-0 group-hover:opacity-70 transition-all duration-500 wetland-reed transform rotate-3"></div>
+                    <div className="absolute bottom-0 right-6 w-1 h-12 bg-green-700 rounded-full opacity-0 group-hover:opacity-70 transition-all duration-500 wetland-reed transform -rotate-2" style={{animationDelay: '0.2s'}}></div>
+                    
+                    {/* Image with waterfowl overlay effect */}
+                    <Image
+                      src="/images/maxi_patos.jpg"
+                      alt="Duck hunting experience - Professional guide with ducks at Rosybill Outfitters"
+                      width={500}
+                      height={384}
+                      className="w-full h-full object-cover filter group-hover:brightness-110 group-hover:contrast-105 transition-all duration-500"
+                      style={{ objectPosition: 'center 40%' }}
+                    />
+                    
+                    {/* Water surface overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 via-transparent to-cyan-900/20 opacity-60 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    
+                    {/* Duck count badge */}
+                    <div className="absolute bottom-4 right-4 bg-blue-700/90 backdrop-blur-sm text-white px-3 py-1 rounded text-xs font-mono opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                      🦆 WATERFOWL EXPERT
+                    </div>
+                    
+                    {/* Weather indicator */}
+                    <div className="absolute top-4 right-4 bg-blue-800/80 backdrop-blur-sm text-cyan-200 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-x-4 group-hover:translate-x-0">
+                      💨 PERFECT CONDITIONS
+                    </div>
+                  </div>
+                  
+                  {/* Wetland decorative elements */}
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-cyan-600 rounded-full opacity-80 group-hover:scale-110 transition-all duration-300 water-bubble"></div>
+                  <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-blue-700 rounded-full opacity-70 group-hover:scale-110 transition-all duration-300 water-bubble" style={{animationDelay: '0.5s'}}></div>
                 </div>
               </div>
             </div>
@@ -528,38 +712,82 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="accommodation-card group rounded-lg overflow-hidden shadow-md cursor-pointer">
-                <div className="accommodation-image-wrapper overflow-hidden">
+              <div className="accommodation-card group rounded-lg overflow-hidden shadow-md cursor-pointer relative">
+                {/* Rustic lodge themed decorative elements */}
+                <div className="absolute -top-3 -left-3 opacity-0 group-hover:opacity-80 transition-all duration-700 lodge-pine">
+                  <div className="w-5 h-5 bg-green-800 pine-tree"></div>
+                </div>
+                <div className="absolute -top-2 -right-3 opacity-0 group-hover:opacity-70 transition-all duration-700 lodge-pine" style={{animationDelay: '0.4s'}}>
+                  <div className="w-4 h-4 bg-green-900 pine-tree"></div>
+                </div>
+                <div className="absolute -bottom-3 -left-2 opacity-0 group-hover:opacity-60 transition-all duration-700 lodge-cabin">
+                  <div className="w-3 h-3 bg-amber-700 cabin-roof"></div>
+                </div>
+                
+                <div className="accommodation-image-wrapper overflow-hidden relative">
+                  {/* Wooden frame effect */}
+                  <div className="absolute inset-0 border-4 border-amber-700/40 group-hover:border-amber-600/70 transition-all duration-500 rounded-lg"></div>
+                  
                   <Image
                     src="/images/accomodation2.webp"
                     alt="Rosybill Outfitters Lodge 2"
                     width={400}
                     height={300}
-                    className="accommodation-image w-full h-48 object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
+                    className="accommodation-image w-full h-48 object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110 group-hover:sepia-[0.2]"
                   />
-                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  
+                  {/* Rustic themed overlay */}
+                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-amber-900/70 via-transparent to-green-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 right-4">
                       <h3 className="text-white font-bold text-lg mb-1">Entre Ríos Lodge</h3>
                       <p className="text-white/90 text-sm">Premium hunting accommodation</p>
                     </div>
                   </div>
+                  
+                  {/* Comfort indicator */}
+                  <div className="absolute top-3 right-3 bg-amber-800/80 backdrop-blur-sm text-amber-200 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-x-3 group-hover:translate-x-0">
+                    🏕️ LUXURY
+                  </div>
                 </div>
               </div>
 
-              <div className="accommodation-card group rounded-lg overflow-hidden shadow-md cursor-pointer">
-                <div className="accommodation-image-wrapper overflow-hidden">
+              <div className="accommodation-card group rounded-lg overflow-hidden shadow-md cursor-pointer relative">
+                {/* Country/farmland themed decorative elements */}
+                <div className="absolute -top-2 left-1/2 opacity-0 group-hover:opacity-80 transition-all duration-700 country-windmill transform -translate-x-1/2">
+                  <div className="w-4 h-6 bg-red-800 windmill-body relative">
+                    <div className="absolute -top-1 left-1/2 w-3 h-3 border-2 border-red-700 rounded-full transform -translate-x-1/2 windmill-blades"></div>
+                  </div>
+                </div>
+                <div className="absolute -bottom-3 right-2 opacity-0 group-hover:opacity-70 transition-all duration-700 country-barn">
+                  <div className="w-4 h-3 bg-red-700 barn-shape"></div>
+                </div>
+                <div className="absolute top-1/2 -left-3 opacity-0 group-hover:opacity-60 transition-all duration-700 country-fence transform -translate-y-1/2">
+                  <div className="w-2 h-8 bg-amber-800 fence-post"></div>
+                </div>
+                
+                <div className="accommodation-image-wrapper overflow-hidden relative">
+                  {/* Countryside frame effect */}
+                  <div className="absolute inset-0 border-4 border-red-700/40 group-hover:border-red-600/70 transition-all duration-500 rounded-lg"></div>
+                  
                   <Image
                     src="/images/accomodation3.webp"
                     alt="Rosybill Outfitters Lodge 3"
                     width={400}
                     height={300}
-                    className="accommodation-image w-full h-48 object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110"
+                    className="accommodation-image w-full h-48 object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:brightness-110 group-hover:hue-rotate-[5deg]"
                   />
-                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  
+                  {/* Countryside themed overlay */}
+                  <div className="accommodation-overlay absolute inset-0 bg-gradient-to-t from-red-900/70 via-transparent to-orange-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-4 left-4 right-4">
                       <h3 className="text-white font-bold text-lg mb-1">Córdoba Lodge</h3>
                       <p className="text-white/90 text-sm">World-class dove hunting</p>
                     </div>
+                  </div>
+                  
+                  {/* Activity indicator */}
+                  <div className="absolute top-3 right-3 bg-red-800/80 backdrop-blur-sm text-red-200 px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-x-3 group-hover:translate-x-0">
+                    🌾 FARMLAND
                   </div>
                 </div>
               </div>
@@ -580,21 +808,80 @@ export default function Home() {
               
               {/* Left Side - Gaucho Asado Image */}
               <div className="relative">
-                <div className="relative overflow-hidden rounded-lg shadow-xl">
-                  <Image
-                    src="/images/gaucho_asado.jpg"
-                    alt="Traditional Argentine Gaucho Asado - Authentic BBQ Experience"
-                    width={600}
-                    height={400}
-                    className="w-full h-[400px] object-cover"
-                    priority
-                  />
-                  {/* Overlay with title */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-2">Authentic Argentine Experience</h3>
-                    <p className="text-white/90 text-sm">Traditional gaucho asado and premium Argentine hospitality</p>
+                <div className="relative group">
+                  {/* Fire-themed gradient border */}
+                  <div className="absolute -inset-3 bg-gradient-to-br from-red-600 via-orange-700 to-yellow-800 rounded-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* BBQ smoke effect rising from top */}
+                  <div className="absolute -top-8 left-1/2 opacity-0 group-hover:opacity-100 transition-all duration-1000 pointer-events-none">
+                    <div className="absolute -left-1 w-2 h-8 bg-gray-400 rounded-full smoke-rise opacity-60"></div>
+                    <div className="absolute left-1 w-1.5 h-10 bg-gray-300 rounded-full smoke-rise opacity-40" style={{animationDelay: '0.5s'}}></div>
+                    <div className="absolute left-3 w-1 h-6 bg-gray-500 rounded-full smoke-rise opacity-50" style={{animationDelay: '1s'}}></div>
                   </div>
+                  
+                  {/* Fire sparks around the image */}
+                  <div className="absolute -inset-6 opacity-0 group-hover:opacity-100 transition-all duration-800 pointer-events-none">
+                    <div className="absolute top-8 left-4 w-1.5 h-1.5 bg-orange-500 rounded-full fire-spark"></div>
+                    <div className="absolute top-12 right-8 w-2 h-2 bg-red-500 rounded-full fire-spark" style={{animationDelay: '0.3s'}}></div>
+                    <div className="absolute bottom-16 left-8 w-1 h-1 bg-yellow-500 rounded-full fire-spark" style={{animationDelay: '0.6s'}}></div>
+                    <div className="absolute bottom-8 right-12 w-1.5 h-1.5 bg-orange-600 rounded-full fire-spark" style={{animationDelay: '0.9s'}}></div>
+                    <div className="absolute top-1/2 left-2 w-1 h-1 bg-red-600 rounded-full fire-spark" style={{animationDelay: '1.2s'}}></div>
+                    <div className="absolute top-1/3 right-4 w-1.5 h-1.5 bg-yellow-600 rounded-full fire-spark" style={{animationDelay: '1.5s'}}></div>
+                  </div>
+                  
+                  {/* Main image container */}
+                  <div className="relative overflow-hidden rounded-lg shadow-2xl transform group-hover:scale-[1.02] transition-all duration-500">
+                    {/* Heat waves effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-all duration-700 pointer-events-none">
+                      <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-orange-500/10 via-red-500/5 to-transparent heat-wave"></div>
+                    </div>
+                    
+                    {/* Image with fire effects */}
+                    <Image
+                      src="/images/gaucho_asado.jpg"
+                      alt="Traditional Argentine Gaucho Asado - Authentic BBQ Experience"
+                      width={600}
+                      height={400}
+                      className="w-full h-[400px] object-cover filter group-hover:brightness-110 group-hover:contrast-110 group-hover:saturate-110 transition-all duration-500"
+                      priority
+                    />
+                    
+                    {/* Fire-themed overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-red-900/30 via-transparent to-orange-900/10 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">Authentic Argentine Experience</h3>
+                      <p className="text-white/90 text-sm">Traditional gaucho asado and premium Argentine hospitality</p>
+                    </div>
+                    
+                    {/* Temperature indicator */}
+                    <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-all duration-700 transform -translate-x-4 group-hover:translate-x-0">
+                      <div className="bg-red-900/80 backdrop-blur-sm text-orange-200 px-3 py-2 rounded-lg text-sm font-mono">
+                        <div className="text-xs text-orange-300">GRILL TEMP</div>
+                        <div className="text-lg font-bold">🔥 450°C</div>
+                      </div>
+                    </div>
+                    
+                    {/* Cooking status */}
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-x-4 group-hover:translate-x-0">
+                      <div className="bg-red-900/80 backdrop-blur-sm text-orange-200 px-2 py-1 rounded text-xs font-mono">
+                        <div>🥩 PERFECTLY COOKED</div>
+                        <div>⏰ 2 HOURS SLOW</div>
+                      </div>
+                    </div>
+                    
+                    {/* Argentine flag accent */}
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-4 bg-blue-400 argentina-flag"></div>
+                        <div className="w-2 h-4 bg-white argentina-flag" style={{animationDelay: '0.2s'}}></div>
+                        <div className="w-2 h-4 bg-blue-400 argentina-flag" style={{animationDelay: '0.4s'}}></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Fire-themed decorative elements */}
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-red-600 rounded-full opacity-80 group-hover:scale-110 transition-all duration-300 flame-pulse"></div>
+                  <div className="absolute -bottom-2 -left-2 w-6 h-6 bg-orange-700 rounded-full opacity-70 group-hover:scale-110 transition-all duration-300 flame-pulse" style={{animationDelay: '0.5s'}}></div>
                 </div>
               </div>
 
@@ -923,6 +1210,266 @@ export default function Home() {
                   }
                 }
                 
+                /* Hunting-themed decorative effects */
+                .border-t-3 { border-top-width: 3px; }
+                .border-l-3 { border-left-width: 3px; }
+                .border-r-3 { border-right-width: 3px; }
+                .border-b-3 { border-bottom-width: 3px; }
+                
+                /* Enhanced image hover effects */
+                .group:hover .filter {
+                  filter: brightness(1.1) contrast(1.05) saturate(1.1);
+                }
+                
+                /* Crosshair animation for hero decorations */
+                @keyframes crosshairGlow {
+                  0%, 100% { opacity: 0.3; transform: scale(1); }
+                  50% { opacity: 0.6; transform: scale(1.1); }
+                }
+                
+                .crosshair-animate {
+                  animation: crosshairGlow 3s ease-in-out infinite;
+                }
+                
+                /* Hunting badge floating effect */
+                @keyframes badgeFloat {
+                  0%, 100% { transform: translateY(0px) rotate(0deg); }
+                  33% { transform: translateY(-2px) rotate(1deg); }
+                  66% { transform: translateY(2px) rotate(-1deg); }
+                }
+                
+                .badge-float {
+                  animation: badgeFloat 4s ease-in-out infinite;
+                }
+                
+                /* Decorative gradient borders */
+                .hunting-gradient-border {
+                  background: linear-gradient(45deg, #ea580c, #d97706, #92400e);
+                  padding: 3px;
+                }
+                
+                /* UNIQUE TARGETING EFFECTS - Professional Guides Theme */
+                @keyframes targetingScope {
+                  0%, 100% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+                  50% { opacity: 1; transform: scale(1.1) rotate(2deg); }
+                }
+                
+                .targeting-scope {
+                  animation: targetingScope 3s ease-in-out infinite;
+                }
+                
+                @keyframes bulletImpact {
+                  0% { opacity: 0; transform: scale(0.5); }
+                  50% { opacity: 1; transform: scale(1.2); }
+                  100% { opacity: 0.8; transform: scale(1); }
+                }
+                
+                .bullet-impact {
+                  animation: bulletImpact 0.5s ease-out forwards;
+                }
+                
+                @keyframes rangeLine {
+                  0% { opacity: 0; }
+                  50% { opacity: 0.6; }
+                  100% { opacity: 0.4; }
+                }
+                
+                .range-line {
+                  animation: rangeLine 2s ease-in-out infinite;
+                }
+                
+                @keyframes bulletShell {
+                  0%, 100% { transform: rotate(0deg) scale(1); }
+                  50% { transform: rotate(180deg) scale(1.1); }
+                }
+                
+                .bullet-shell {
+                  animation: bulletShell 4s ease-in-out infinite;
+                }
+                
+                /* UNIQUE WATERFOWL EFFECTS - Duck Hunting Theme */
+                @keyframes flyingDuck {
+                  0% { opacity: 0; transform: translateX(-20px) translateY(5px) rotate(-5deg); }
+                  50% { opacity: 0.8; transform: translateX(0px) translateY(0px) rotate(0deg); }
+                  100% { opacity: 0; transform: translateX(20px) translateY(-5px) rotate(5deg); }
+                }
+                
+                .flying-duck {
+                  animation: flyingDuck 4s ease-in-out infinite;
+                }
+                
+                @keyframes duckSilhouette {
+                  0%, 100% { transform: translateY(0px) scale(1); }
+                  50% { transform: translateY(-2px) scale(1.05); }
+                }
+                
+                .duck-silhouette {
+                  animation: duckSilhouette 2s ease-in-out infinite;
+                }
+                
+                @keyframes waterRipple {
+                  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                  50% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+                  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.3); }
+                }
+                
+                .water-ripple {
+                  animation: waterRipple 3s ease-out infinite;
+                }
+                
+                @keyframes waterDrop {
+                  0% { opacity: 0; transform: translateY(-10px) scale(0.5); }
+                  50% { opacity: 1; transform: translateY(0px) scale(1); }
+                  100% { opacity: 0; transform: translateY(10px) scale(0.8); }
+                }
+                
+                .water-drop {
+                  animation: waterDrop 2s ease-in-out infinite;
+                }
+                
+                @keyframes wetlandReed {
+                  0%, 100% { transform: rotate(0deg) scale(1); }
+                  50% { transform: rotate(3deg) scale(1.05); }
+                }
+                
+                .wetland-reed {
+                  animation: wetlandReed 3s ease-in-out infinite;
+                }
+                
+                @keyframes waterBubble {
+                  0%, 100% { opacity: 0.8; transform: scale(1); }
+                  50% { opacity: 1; transform: scale(1.2); }
+                }
+                
+                .water-bubble {
+                  animation: waterBubble 2s ease-in-out infinite;
+                }
+                
+                /* UNIQUE BBQ EFFECTS - Argentine Asado Theme */
+                @keyframes smokeRise {
+                  0% { opacity: 0; transform: translateY(20px) scale(0.8); }
+                  50% { opacity: 0.8; transform: translateY(-10px) scale(1); }
+                  100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+                }
+                
+                .smoke-rise {
+                  animation: smokeRise 3s ease-out infinite;
+                }
+                
+                @keyframes fireSpark {
+                  0% { opacity: 0; transform: translateY(0px) scale(0.5); }
+                  25% { opacity: 1; transform: translateY(-5px) scale(1); }
+                  50% { opacity: 0.8; transform: translateY(-8px) scale(1.2); }
+                  75% { opacity: 0.6; transform: translateY(-10px) scale(0.8); }
+                  100% { opacity: 0; transform: translateY(-15px) scale(0.3); }
+                }
+                
+                .fire-spark {
+                  animation: fireSpark 2s ease-out infinite;
+                }
+                
+                @keyframes heatWave {
+                  0%, 100% { opacity: 0.1; transform: scaleY(1) skewX(0deg); }
+                  50% { opacity: 0.3; transform: scaleY(1.1) skewX(1deg); }
+                }
+                
+                .heat-wave {
+                  animation: heatWave 1.5s ease-in-out infinite;
+                }
+                
+                @keyframes argentinaFlag {
+                  0%, 100% { opacity: 0.8; transform: scaleY(1); }
+                  50% { opacity: 1; transform: scaleY(1.1); }
+                }
+                
+                .argentina-flag {
+                  animation: argentinaFlag 1.8s ease-in-out infinite;
+                }
+                
+                @keyframes flamePulse {
+                  0%, 100% { opacity: 0.8; transform: scale(1); background-color: #dc2626; }
+                  50% { opacity: 1; transform: scale(1.1); background-color: #f97316; }
+                }
+                
+                .flame-pulse {
+                  animation: flamePulse 1.5s ease-in-out infinite;
+                }
+                
+                /* UNIQUE LODGE EFFECTS - Accommodation Theme */
+                @keyframes lodgePine {
+                  0%, 100% { transform: scale(1) rotate(0deg); }
+                  50% { transform: scale(1.1) rotate(3deg); }
+                }
+                
+                .lodge-pine {
+                  animation: lodgePine 4s ease-in-out infinite;
+                }
+                
+                .pine-tree {
+                  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                }
+                
+                @keyframes lodgeCabin {
+                  0%, 100% { transform: scale(1); opacity: 0.6; }
+                  50% { transform: scale(1.15); opacity: 1; }
+                }
+                
+                .lodge-cabin {
+                  animation: lodgeCabin 3s ease-in-out infinite;
+                }
+                
+                .cabin-roof {
+                  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                }
+                
+                @keyframes countryWindmill {
+                  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+                  50% { transform: translateX(-50%) rotate(5deg); }
+                }
+                
+                .country-windmill {
+                  animation: countryWindmill 3s ease-in-out infinite;
+                }
+                
+                .windmill-body {
+                  border-radius: 2px;
+                }
+                
+                @keyframes windmillBlades {
+                  0% { transform: translateX(-50%) rotate(0deg); }
+                  100% { transform: translateX(-50%) rotate(360deg); }
+                }
+                
+                .windmill-blades {
+                  animation: windmillBlades 4s linear infinite;
+                }
+                
+                @keyframes countryBarn {
+                  0%, 100% { transform: scale(1); }
+                  50% { transform: scale(1.1); }
+                }
+                
+                .country-barn {
+                  animation: countryBarn 5s ease-in-out infinite;
+                }
+                
+                .barn-shape {
+                  border-radius: 2px 2px 0 0;
+                }
+                
+                @keyframes countryFence {
+                  0%, 100% { transform: translateY(-50%) scaleY(1); }
+                  50% { transform: translateY(-50%) scaleY(1.1); }
+                }
+                
+                .country-fence {
+                  animation: countryFence 4s ease-in-out infinite;
+                }
+                
+                .fence-post {
+                  border-radius: 1px;
+                }
+                
                 /* Responsive Design */
                 @media (max-width: 768px) {
                   .text-5xl { font-size: 2.25rem; }
@@ -934,6 +1481,68 @@ export default function Home() {
                   
                   .fade-in-section {
                     animation-delay: 0.1s;
+                  }
+                  
+                  /* Simplify decorative elements on mobile */
+                  .absolute.w-12.h-12 {
+                    width: 2rem;
+                    height: 2rem;
+                  }
+                  
+                  /* Prevent horizontal overflow on mobile */
+                  body, html {
+                    overflow-x: hidden;
+                  }
+                  
+                  /* Hide or reduce decorative elements that extend outside containers */
+                  .absolute[class*="-inset"],
+                  .absolute[class*="-top"],
+                  .absolute[class*="-left"],
+                  .absolute[class*="-right"],
+                  .absolute[class*="-bottom"] {
+                    display: none !important;
+                  }
+                  
+                  /* Keep only essential badges and reduce their size */
+                  .absolute[class*="bottom-4"][class*="right-4"],
+                  .absolute[class*="top-4"][class*="right-4"] {
+                    display: block !important;
+                    transform: scale(0.8);
+                  }
+                  
+                  /* Reduce flying elements and external decorations */
+                  .flying-duck,
+                  .fire-spark,
+                  .water-ripple,
+                  .smoke-rise,
+                  .targeting-scope,
+                  .bullet-impact,
+                  .range-line,
+                  .nature-leaf,
+                  .nature-star,
+                  .flying-bird,
+                  .mountain-peak,
+                  .lodge-pine,
+                  .lodge-cabin,
+                  .country-windmill,
+                  .country-barn,
+                  .country-fence {
+                    display: none !important;
+                  }
+                  
+                  /* Reduce spacing and padding to prevent overflow */
+                  .relative.group {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                  }
+                  
+                  /* Ensure all images stay within bounds */
+                  .accommodation-image-wrapper,
+                  .relative.h-96,
+                  .relative.h-\\[28rem\\],
+                  .relative.overflow-hidden {
+                    max-width: 100% !important;
+                    overflow: hidden !important;
                   }
                 }
               `}</style>
