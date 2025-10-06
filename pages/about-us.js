@@ -209,15 +209,12 @@ export default function AboutUs() {
                   </p>
                 </div>
 
-                {/* Mobile version - Condensed story */}
-                <div className="md:hidden space-y-4 text-stone-600">
-                  <p className="text-base">
-                    I&apos;m Maxi. Started hunting at 14 near Buenos Aires with my grandparents. 25+ years bringing international hunters to Argentina.
-                  </p>
-                  <p className="text-sm font-medium text-stone-700">
-                    &ldquo;Hunters arrive as clients, leave as friends!&rdquo;
-                  </p>
-                </div>
+                 {/* Mobile version - Condensed story */}
+                 <div className="md:hidden space-y-4 text-stone-600">
+                   <p className="text-sm leading-relaxed">
+                     My name is Maxi. My passion for duck and dove hunting began in a small town an hour from Buenos Aires, thanks to my grandfather. Since 1999, I&apos;ve been welcoming hunters from around the world, especially from the United States. Over the years, I&apos;ve learned how to create unforgettable experiences — from preparing the lagoons to using the best decoys and calls. Hunters arrive as clients and leave as friends. We work to make your stay in Argentina truly memorable.
+                   </p>
+                 </div>
               </div>
 
               <div className="order-1 lg:order-2">
