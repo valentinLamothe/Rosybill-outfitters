@@ -9,10 +9,16 @@
   html {
     font-family: 'Montserrat', system-ui, sans-serif;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Lora', serif;
   }
+}
+
+/* Keeps the fixed hunting-day header from covering an anchor's heading;
+   harmless on other pages since none of them use in-page anchors. */
+[id] {
+  scroll-margin-top: 96px;
 }
 
 @layer components {
