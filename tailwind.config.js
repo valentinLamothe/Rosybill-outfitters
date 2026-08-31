@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'hd-nav': '1080px',
+      },
       fontFamily: {
         sans: ['Montserrat', 'system-ui', 'sans-serif'],
         serif: ['Lora', 'serif'],
