@@ -41,7 +41,7 @@ export default function LastLight() {
         paddingBottom: 80,
       }}
     >
-      <SectionBackdrop src={palomas} objectPosition="50% 34%" sizes="(max-width: 640px) 1180vw, 255vw" />
+      <SectionBackdrop src={palomas} objectPosition="50% 34%" sizes="(max-width: 640px) 1180vw, 255vw" quality={65} />
       <div style={{ position: 'relative' }}>
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px 14px' }}>
           <span

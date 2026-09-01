@@ -18,7 +18,7 @@ export default function OpenWater() {
         paddingTop: 110,
       }}
     >
-      <SectionBackdrop src={banado} objectPosition="50% 62%" sizes="(max-width: 640px) 180vw, 100vw" />
+      <SectionBackdrop src={banado} objectPosition="50% 62%" sizes="(max-width: 640px) 305vw, 110vw" quality={65} />
       <div style={{ position: 'relative', fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: '0.2em', color: 'var(--rb-ink-faint, rgba(232,227,214,0.5))' }}>
         10:00
       </div>

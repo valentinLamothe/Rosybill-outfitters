@@ -18,7 +18,7 @@ export default function WhoWeAre() {
         justifyContent: 'center',
       }}
     >
-      <SectionBackdrop src={banado} objectPosition="50% 32%" scrimVar="--rb-scrim-low" scrimFallback="rgba(0,0,0,0.45)" sizes="(max-width: 640px) 240vw, 100vw" />
+      <SectionBackdrop src={banado} objectPosition="50% 32%" scrimVar="--rb-scrim-low" scrimFallback="rgba(0,0,0,0.45)" sizes="(max-width: 640px) 305vw, 110vw" quality={65} />
       <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '56px 64px', alignItems: 'center' }}>
         <PlateFigure
           src={equipo}

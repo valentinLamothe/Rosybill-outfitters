@@ -20,6 +20,7 @@ export default function useHuntingDayEngine(rootRef) {
   const reduced = useRef(false);
   const raf = useRef(0);
   const roRaf = useRef(0);
+  const suspended = useRef(false);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -74,10 +75,9 @@ export default function useHuntingDayEngine(rootRef) {
       return out;
     };
 
-    const paint = () => {
-      const p = bandProgress();
-      const s = sample(p, reduced.current, LAB);
-
+    // Parallax runs in every mode: a transform left stale while colors are
+    // frozen snaps the landing photo by the full cap when they resume.
+    const paint = (mode) => {
       if (!reduced.current && !parallaxEls.current) {
         parallaxEls.current = [...root.querySelectorAll('img[data-parallax], video[data-parallax]')];
       }
@@ -102,6 +102,10 @@ export default function useHuntingDayEngine(rootRef) {
       } else if (reduced.current && parallaxEls.current) {
         parallaxEls.current.forEach((img) => { img.style.transform = 'none'; });
       }
+      if (mode === 'parallax-only') return;
+
+      const p = mode === 'frozen' ? 0 : bandProgress();
+      const s = sample(p, reduced.current, LAB);
 
       let ink = INKS[0], best = 0;
       for (const c of INKS) {
@@ -164,7 +168,9 @@ export default function useHuntingDayEngine(rootRef) {
       const txt = String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
       if (clock && clock.textContent !== txt) {
         clock.textContent = txt;
-        if (NAMED_STOP_MINUTES.includes(m) && !reduced.current) {
+        // 05:40 is itself a named stop, so without this every menu tap would
+        // pop the clock on the way into the frozen palette.
+        if (NAMED_STOP_MINUTES.includes(m) && !reduced.current && mode !== 'frozen') {
           clock.style.transition = 'none';
           clock.style.transform = 'scale(1.22)';
           requestAnimationFrame(() => {
@@ -179,7 +185,7 @@ export default function useHuntingDayEngine(rootRef) {
 
     // paint() reads live scroll position, so one rAF per frame is enough —
     // no need to also paint synchronously inside the scroll handler itself.
-    const tick = () => { raf.current = 0; paint(); };
+    const tick = () => { raf.current = 0; paint(suspended.current ? 'parallax-only' : undefined); };
     const onScroll = () => {
       if (raf.current) return;
       raf.current = requestAnimationFrame(tick);
@@ -191,11 +197,27 @@ export default function useHuntingDayEngine(rootRef) {
       paint();
     };
 
+    // Programmatic scroll fires far more 'scroll' events than touch does, so
+    // callers can pause repaints here and land once on unfreeze instead.
+    const onColorFreeze = () => {
+      if (reduced.current) return;
+      suspended.current = true;
+      paint('frozen');
+    };
+    // Clears the flag even under reduced motion, so a mid-scroll preference
+    // change can't leave the palette suspended for good.
+    const onColorUnfreeze = () => {
+      suspended.current = false;
+      if (!reduced.current) paint();
+    };
+
     measureBands();
     paint();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onResize);
     reducedMotionQuery.addEventListener('change', onReducedMotionChange);
+    window.addEventListener('hd:color-freeze', onColorFreeze);
+    window.addEventListener('hd:color-unfreeze', onColorUnfreeze);
 
     let ro;
     if (window.ResizeObserver) {
@@ -236,10 +258,13 @@ export default function useHuntingDayEngine(rootRef) {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onResize);
       reducedMotionQuery.removeEventListener('change', onReducedMotionChange);
+      window.removeEventListener('hd:color-freeze', onColorFreeze);
+      window.removeEventListener('hd:color-unfreeze', onColorUnfreeze);
       if (ro) ro.disconnect();
       if (strip && onStrip) strip.removeEventListener('scroll', onStrip);
       if (roRaf.current) cancelAnimationFrame(roRaf.current);
       if (raf.current) cancelAnimationFrame(raf.current);
+      suspended.current = false;
       const rs = document.documentElement.style;
       CUSTOM_PROPS.forEach((k) => rs.removeProperty(k));
       // <body> survives Pages Router client-nav, so paint()'s bg write

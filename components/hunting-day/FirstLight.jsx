@@ -26,7 +26,7 @@ export default function FirstLight() {
         justifyContent: 'center',
       }}
     >
-      <SectionBackdrop src={frost} objectPosition="50% 62%" sizes="(max-width: 640px) 710vw, 100vw" />
+      <SectionBackdrop src={frost} objectPosition="50% 62%" sizes="(max-width: 640px) 710vw, 100vw" quality={65} />
       {/* The design mixes two color washes over the frost photo so it reads
           as "first light green", independent of the live scroll palette. */}
       <div style={{ position: 'absolute', inset: 0, background: '#2A3A2E', mixBlendMode: 'color', opacity: 0.92 }} />

@@ -29,6 +29,10 @@ export default function Hero() {
           { src: `${MEDIA_BASE}/videos/hunting-day/hero-sunrise-hevc.mp4`, type: 'video/mp4; codecs=hvc1' },
           { src: `${MEDIA_BASE}/videos/hunting-day/hero-sunrise.mp4`, type: 'video/mp4; codecs=avc1' },
         ]}
+        mobileSources={[
+          { src: `${MEDIA_BASE}/videos/hunting-day/hero-sunrise-mobile-hevc.mp4`, type: 'video/mp4; codecs=hvc1' },
+          { src: `${MEDIA_BASE}/videos/hunting-day/hero-sunrise-mobile.mp4`, type: 'video/mp4; codecs=avc1' },
+        ]}
         poster="/images/hunting-day/hd/hero-sunrise-poster.jpg"
         objectPosition="50% 45%"
         priority
