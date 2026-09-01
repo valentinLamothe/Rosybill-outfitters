@@ -19,7 +19,7 @@ export default function Guides() {
         justifyContent: 'center',
       }}
     >
-      <SectionBackdrop src={banado} objectPosition="50% 58%" scrimVar="--rb-scrim-low" scrimFallback="rgba(0,0,0,0.45)" sizes="(max-width: 640px) 305vw, 110vw" />
+      <SectionBackdrop src={banado} objectPosition="50% 58%" scrimVar="--rb-scrim-low" scrimFallback="rgba(0,0,0,0.45)" sizes="(max-width: 640px) 305vw, 110vw" quality={65} />
       <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', gap: '56px 64px', alignItems: 'center' }}>
         <div style={{ flex: '1 1 400px', minWidth: 0, maxWidth: 560 }}>
           <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px 14px' }}>

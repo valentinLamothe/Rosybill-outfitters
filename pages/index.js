@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import HuntingDay from '../components/hunting-day/HuntingDay';
 
-const SITE_URL = 'https://rosybill-outfitters.vercel.app'; // TODO: replace with the production domain once confirmed
+const SITE_URL = 'https://rosybill-outfitters.com';
 
 export default function Home() {
   return (
@@ -13,6 +13,7 @@ export default function Home() {
           content="Follow one full day of duck and dove hunting at Rosybill Outfitters, Argentina's family-run wingshooting lodge on the wetlands of Buenos Aires since 1993."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href={`${SITE_URL}/`} />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
@@ -20,13 +21,6 @@ export default function Home() {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
-
-        {/* Design fonts */}
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-          rel="stylesheet"
-        />
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />

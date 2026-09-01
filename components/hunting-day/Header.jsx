@@ -9,6 +9,37 @@ const NAV_ITEMS = [
   { href: '#travel', label: 'Travel' },
 ];
 
+const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
+
+// A flat duration made the ~9000px jump to Travel feel rushed and the near
+// jump to The Day feel sluggish — scale with distance instead, clamped.
+const scrollDuration = (distance) => Math.min(1700, 500 + Math.abs(distance) * 0.13);
+
+// Native scrollIntoView's "smooth" has no duration control and finishes
+// fast regardless of distance — this drives the scroll ourselves instead.
+function smoothScrollTo(targetY, duration, onDone) {
+  const root = document.documentElement;
+  // globals.css sets html{scroll-behavior:smooth}, which would turn each
+  // per-frame scrollTo into its own restarting animation and stall the scroll.
+  const prevBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = 'auto';
+
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  const startTime = performance.now();
+  const step = (now) => {
+    const t = Math.min(1, (now - startTime) / duration);
+    window.scrollTo(0, startY + distance * easeInOutCubic(t));
+    if (t < 1) {
+      requestAnimationFrame(step);
+    } else {
+      root.style.scrollBehavior = prevBehavior;
+      onDone?.();
+    }
+  };
+  requestAnimationFrame(step);
+}
+
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [narrow, setNarrow] = useState(false);
@@ -31,7 +62,16 @@ export default function Header() {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        target.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth', block: 'start' });
+        const rect = target.getBoundingClientRect();
+        const scrollMarginTop = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+        const targetY = rect.top + window.scrollY - scrollMarginTop;
+        if (reduced) {
+          window.scrollTo(0, targetY);
+        } else {
+          window.dispatchEvent(new Event('hd:color-freeze'));
+          const duration = scrollDuration(targetY - window.scrollY);
+          smoothScrollTo(targetY, duration, () => window.dispatchEvent(new Event('hd:color-unfreeze')));
+        }
       });
     });
   };
