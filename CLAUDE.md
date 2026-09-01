@@ -21,9 +21,12 @@ hasta que se resuelva esto:
    (no tiene la restricción de sandbox de `onboarding@resend.dev`), pero lo
    ideal es verificar el dominio propio en Resend (resend.com/domains) y
    volver a apuntar el `from` ahí.
-3. Una vez seteado `INQUIRY_TO_EMAIL` y `RESEND_API_KEY` en Vercel, hacer un
-   envío de prueba real desde el formulario deployado para confirmar entrega
-   de punta a punta — no alcanza con que el build compile.
+3. Una vez seteado `INQUIRY_TO_EMAIL` y `RESEND_API_KEY` en Vercel, setear
+   también `NEXT_PUBLIC_INQUIRY_FORM_READY=true` en el mismo redeploy — el
+   botón "Send inquiry" queda deshabilitado en el cliente hasta que esta env
+   var esté en `true` (ver `components/hunting-day/InquiryForm.jsx`). Después
+   de deployar, hacer un envío de prueba real desde el formulario para
+   confirmar entrega de punta a punta — no alcanza con que el build compile.
 
 ## Media pesado (video)
 

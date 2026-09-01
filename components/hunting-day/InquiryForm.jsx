@@ -2,6 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 
 const MONTHS = ['May', 'June', 'July', 'August'];
 
+// Flip to 'true' in the same redeploy as INQUIRY_TO_EMAIL/RESEND_API_KEY —
+// the API route fails closed until then, so this keeps the button honest.
+const INQUIRY_FORM_READY = process.env.NEXT_PUBLIC_INQUIRY_FORM_READY === 'true';
+
 const fieldLabelStyle = {
   fontSize: 11,
   letterSpacing: '0.1em',
@@ -48,6 +52,7 @@ export default function InquiryForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!INQUIRY_FORM_READY || status === 'submitting') return;
     setStatus('submitting');
     setError('');
     try {
@@ -157,7 +162,7 @@ export default function InquiryForm() {
       </div>
       <button
         type="submit"
-        disabled={status === 'submitting'}
+        disabled={!INQUIRY_FORM_READY || status === 'submitting'}
         style={{
           fontSize: 14,
           fontWeight: 600,
@@ -167,12 +172,17 @@ export default function InquiryForm() {
           background: 'var(--rb-accent, #E8556B)',
           color: 'var(--rb-accent-ink, #20070C)',
           border: 'none',
-          cursor: status === 'submitting' ? 'wait' : 'pointer',
-          opacity: status === 'submitting' ? 0.7 : 1,
+          cursor: !INQUIRY_FORM_READY ? 'not-allowed' : status === 'submitting' ? 'wait' : 'pointer',
+          opacity: !INQUIRY_FORM_READY || status === 'submitting' ? 0.6 : 1,
         }}
       >
         {status === 'submitting' ? 'Sending…' : 'Send inquiry'}
       </button>
+      {!INQUIRY_FORM_READY && (
+        <div style={{ fontSize: 12.5, lineHeight: 1.6, color: 'var(--rb-ink-faint, rgba(232,227,214,0.5))' }}>
+          Online inquiries aren&apos;t open yet. Reach us directly: US 404 404 2333 / WhatsApp Argentina +54 9 11 6927 4103.
+        </div>
+      )}
       {status === 'error' && (
         <div role="alert" style={{ fontSize: 12.5, lineHeight: 1.6, color: 'var(--rb-accent, #E8556B)' }}>{error}</div>
       )}

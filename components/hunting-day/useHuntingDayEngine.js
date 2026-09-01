@@ -83,8 +83,8 @@ export default function useHuntingDayEngine(rootRef) {
       }
       if (!reduced.current && parallaxEls.current) {
         const narrow = window.innerWidth < 640;
-        const strength = narrow ? 0.19 : 0.30;
-        const cap = narrow ? 90 : 140;
+        const strength = narrow ? 0.13 : 0.20;
+        const cap = narrow ? 65 : 100;
         const vh = window.innerHeight;
         // Read all rects before writing any transform, so layout isn't
         // recomputed between elements.

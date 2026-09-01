@@ -22,6 +22,20 @@ export default function Header() {
     return () => mq.removeEventListener('change', sync);
   }, []);
 
+  // Double rAF avoids the scroll animation stuttering against the panel's own unmount re-render.
+  const handlePanelNavClick = (e, href) => {
+    e.preventDefault();
+    setOpen(false);
+    const target = document.querySelector(href);
+    if (!target) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth', block: 'start' });
+      });
+    });
+  };
+
   return (
     <header
       className="hd-header"
@@ -109,7 +123,7 @@ export default function Header() {
         >
           <a
             href="#lodge"
-            onClick={() => setOpen(false)}
+            onClick={(e) => handlePanelNavClick(e, '#lodge')}
             style={{ padding: '14px 0', marginBottom: 4, fontSize: 13, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', textAlign: 'center', background: 'var(--rb-ink, #E8E3D6)', color: 'var(--rb-bg, #0E1524)' }}
           >
             Book your trip
@@ -118,7 +132,7 @@ export default function Header() {
             <a
               key={item.href}
               href={item.href}
-              onClick={() => setOpen(false)}
+              onClick={(e) => handlePanelNavClick(e, item.href)}
               style={{ padding: '10px 0', fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--rb-ink-dim, #E8E3D6)' }}
             >
               {item.label}

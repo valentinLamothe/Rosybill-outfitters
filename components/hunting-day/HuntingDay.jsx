@@ -60,6 +60,9 @@ export default function HuntingDay() {
             scroll-behavior: smooth;
           }
         }
+        .hunting-day {
+          touch-action: manipulation;
+        }
         .hunting-day a {
           color: var(--rb-accent, #E8556B);
           text-decoration: none;
