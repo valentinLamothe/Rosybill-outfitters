@@ -13,12 +13,14 @@ const fieldLabelStyle = {
   color: 'var(--rb-ink-faint, rgba(232,227,214,0.5))',
 };
 
+// 16px is the floor iOS Safari checks before auto-zooming a focused field —
+// anything smaller and tapping in triggers a zoom that pinch-out has to undo.
 const fieldInputStyle = {
   background: 'transparent',
   border: 'none',
   borderBottom: '1px solid var(--rb-field-rule, rgba(232,227,214,0.55))',
   paddingBottom: 11,
-  fontSize: 14.5,
+  fontSize: 16,
   fontFamily: 'inherit',
   color: 'var(--rb-ink, #E8E3D6)',
   outline: 'none',
