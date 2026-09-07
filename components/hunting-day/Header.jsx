@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import AmbientSound from './AmbientSound';
 
@@ -8,6 +9,10 @@ const NAV_ITEMS = [
   { href: '#lodge', label: 'Lodge' },
   { href: '#travel', label: 'Travel' },
 ];
+
+// A real page, not an in-page anchor — rendered separately since it needs
+// next/link instead of the anchor-scroll handling the items above use.
+const PAGE_LINK = { href: '/wingshooting', label: 'Wingshooting' };
 
 const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
@@ -76,6 +81,15 @@ export default function Header() {
     });
   };
 
+  // A real page navigation, unlike the in-page anchors above — reset
+  // scroll-behavior so the route change's scroll-to-top isn't animated.
+  const handlePageLinkClick = () => {
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    setTimeout(() => { root.style.scrollBehavior = prev; }, 300);
+  };
+
   return (
     <header
       className="hd-header"
@@ -108,6 +122,7 @@ export default function Header() {
           {NAV_ITEMS.map((item) => (
             <a key={item.href} href={item.href}>{item.label}</a>
           ))}
+          <Link href={PAGE_LINK.href} onClick={handlePageLinkClick}>{PAGE_LINK.label}</Link>
           <a
             href="#lodge"
             style={{ padding: '9px 16px', background: 'var(--rb-ink, #E8E3D6)', color: 'var(--rb-bg, #0E1524)' }}
@@ -178,6 +193,13 @@ export default function Header() {
               {item.label}
             </a>
           ))}
+          <Link
+            href={PAGE_LINK.href}
+            onClick={() => { setOpen(false); handlePageLinkClick(); }}
+            style={{ padding: '10px 0', fontSize: 13, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--rb-ink-dim, #E8E3D6)' }}
+          >
+            {PAGE_LINK.label}
+          </Link>
         </nav>
       )}
     </header>

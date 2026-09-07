@@ -12,6 +12,7 @@ import Guides from './Guides';
 import WhoWeAre from './WhoWeAre';
 import FieldArchive from './FieldArchive';
 import Lodge from './Lodge';
+import WingshootingTab from './WingshootingTab';
 
 export default function HuntingDay() {
   const rootRef = useRef(null);
@@ -42,6 +43,7 @@ export default function HuntingDay() {
           <FieldArchive />
           <Lodge />
         </main>
+        <WingshootingTab />
       </div>
       {/* Fully global CSS — styled-jsx still removes this <style> tag on
           unmount, so these rules stop applying once you leave this page. */}

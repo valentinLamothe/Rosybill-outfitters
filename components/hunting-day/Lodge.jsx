@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import SectionVideoBackdrop from './SectionVideoBackdrop';
 import InquiryForm from './InquiryForm';
 import Footer from './Footer';
@@ -88,6 +89,28 @@ export default function Lodge() {
             {dataItem('SEASON', 'May 1 – August 10')}
             {dataItem('ALSO', 'Wildlife photography, cultural trips')}
           </div>
+          <Link
+            href="/wingshooting"
+            onClick={() => {
+              const root = document.documentElement;
+              const prev = root.style.scrollBehavior;
+              root.style.scrollBehavior = 'auto';
+              setTimeout(() => { root.style.scrollBehavior = prev; }, 300);
+            }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              marginTop: 28,
+              fontFamily: "'JetBrains Mono',monospace",
+              fontSize: 12,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'var(--rb-accent, #E8556B)',
+            }}
+          >
+            Watch the field video →
+          </Link>
         </div>
         <InquiryForm />
       </div>
