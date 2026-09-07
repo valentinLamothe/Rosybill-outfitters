@@ -38,7 +38,7 @@ export default function Footer() {
             fontSize: 11,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'var(--rb-ink-faint, rgba(232,227,214,0.5))',
+            color: 'var(--rb-ink-faint, rgba(232,227,214,0.55))',
           }}
         >
           <span style={{ flex: '1 1 240px', minWidth: 0, lineHeight: 1.9 }}>
@@ -50,7 +50,7 @@ export default function Footer() {
             US Office <a href="tel:+14044042333" style={{ color: 'var(--rb-ink-dim, #E8E3D6)' }}>404 404 2333</a>
             <br />
             Argentina{' '}
-            <a href="https://wa.me/5491169274103?text=Hola%2C%20quisiera%20consultar%20disponibilidad%20para%20una%20cacer%C3%ADa." style={{ color: 'var(--rb-ink-dim, #E8E3D6)' }}>
+            <a href="https://wa.me/5491169274103?text=Hello%2C%20I%27d%20like%20to%20check%20availability%20for%20a%20hunting%20trip." style={{ color: 'var(--rb-ink-dim, #E8E3D6)' }}>
               +54 9 11 6927 4103
             </a>
             <br />
@@ -66,7 +66,7 @@ export default function Footer() {
               fontSize: 9.5,
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              color: 'var(--rb-ink-faint, rgba(232,227,214,0.5))',
+              color: 'var(--rb-ink-faint, rgba(232,227,214,0.55))',
               marginBottom: 8,
             }}
           >
@@ -90,7 +90,7 @@ export default function Footer() {
           fontSize: 11,
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: 'var(--rb-ink-faint, rgba(232,227,214,0.5))',
+          color: 'var(--rb-ink-faint, rgba(232,227,214,0.55))',
         }}
       >
         <nav style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
