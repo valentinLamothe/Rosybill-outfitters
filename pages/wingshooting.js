@@ -13,6 +13,8 @@ import outside5 from '../public/images/aires_house_outside_5.jpg';
 import inside1 from '../public/images/aires_house_inside_1.jpg';
 import inside2 from '../public/images/aires_house_inside_2.jpg';
 import inside3 from '../public/images/aires_house_inside_3.jpg';
+import winePour from '../public/images/wingshooting/wine-pour.jpg';
+import lodgeBar from '../public/images/wingshooting/lodge-bar.jpg';
 import entreRiosImg from '../public/images/accomodation2.webp';
 import cordobaImg from '../public/images/accomodation3.webp';
 
@@ -29,8 +31,10 @@ const TERRITORY_PHOTOS = [
   { src: inside1, label: 'PLATE 06', tag: 'BUENOS AIRES', caption: 'The main room, before breakfast.', alt: "The lodge's main dining room set before breakfast" },
   { src: inside2, label: 'PLATE 07', tag: 'BUENOS AIRES', caption: 'Where the group gathers at night.', alt: 'A lounge area where guests gather in the evening' },
   { src: inside3, label: 'PLATE 08', tag: 'BUENOS AIRES', caption: 'A quiet corner of the lodge.', alt: 'A quiet seating corner inside the lodge' },
-  { src: entreRiosImg, label: 'PLATE 09', tag: 'ENTRE RÍOS · DOVES', caption: 'High-volume shooting in prime agricultural country.', alt: 'Agricultural fields in Entre Ríos used for dove shooting' },
-  { src: cordobaImg, label: 'PLATE 10', tag: 'CÓRDOBA · DOVES', caption: 'The dove-shooting capital of the world.', alt: 'Open countryside in Córdoba, known for its dove population' },
+  { src: winePour, label: 'PLATE 09', tag: 'BUENOS AIRES', caption: 'Argentine wine, poured at the table.', alt: 'Red wine being poured into a glass at the lodge dining table' },
+  { src: lodgeBar, label: 'PLATE 10', tag: 'BUENOS AIRES', caption: 'The lodge bar, stocked for the evening.', alt: "The lodge's bar shelf, stocked with wine and spirits" },
+  { src: entreRiosImg, label: 'PLATE 11', tag: 'ENTRE RÍOS · DOVES', caption: 'High-volume shooting in prime agricultural country.', alt: 'Agricultural fields in Entre Ríos used for dove shooting' },
+  { src: cordobaImg, label: 'PLATE 12', tag: 'CÓRDOBA · DOVES', caption: 'The dove-shooting capital of the world.', alt: 'Open countryside in Córdoba, known for its dove population' },
 ];
 
 const monoLabel = { fontFamily: "'JetBrains Mono',monospace", fontSize: 12.5, letterSpacing: '0.14em', textTransform: 'uppercase' };

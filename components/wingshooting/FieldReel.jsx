@@ -32,7 +32,7 @@ export default function FieldReel() {
         }}
       >
         <span>Field Footage</span>
-        <span>0:43</span>
+        <span>0:46</span>
       </figcaption>
       <div style={{ marginTop: 5, fontSize: 13, lineHeight: 1.5, color: 'rgba(232,227,214,0.85)' }}>
         Dawn to dusk on the same water in Buenos Aires, unedited.
