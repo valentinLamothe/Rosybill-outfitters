@@ -4,7 +4,7 @@ const MEDIA_BASE = (process.env.NEXT_PUBLIC_R2_MEDIA_URL || '').replace(/\/$/, '
 // this is a real clip a visitor watches, not ambient background video.
 export default function FieldReel() {
   return (
-    <figure style={{ margin: 0 }}>
+    <figure style={{ margin: 0, width: '100%' }}>
       <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', overflow: 'hidden', background: '#1A2438' }}>
         <video
           controls

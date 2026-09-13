@@ -22,7 +22,7 @@ export default function FieldArchive() {
         background: 'var(--rb-photo, #12180F)',
       }}
     >
-      <SectionBackdrop src={archBg} objectPosition="50% 40%" scrimVar="--rb-tint" scrimFallback="rgba(0,0,0,0.4)" />
+      <SectionBackdrop src={archBg} objectPosition="50% 28%" scrimVar="--rb-tint" scrimFallback="rgba(0,0,0,0.45)" />
       <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 8, padding: '0 clamp(20px,5vw,40px)' }}>
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '10px 14px' }}>
           <span

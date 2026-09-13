@@ -106,6 +106,8 @@ export default function WhatToExpect() {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             overflow-x: visible;
+            max-width: 1000px;
+            margin: 0 auto;
           }
           .expect-chip {
             flex: initial;

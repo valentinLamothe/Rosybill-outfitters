@@ -47,17 +47,13 @@ export default function Guides() {
             Professional guides who belong to the operation, not hired in for the week. They set the blinds, they read the water, and they are the ones you will hunt with again next year.
           </p>
         </div>
-        <div style={{ flex: '1 1 500px', minWidth: 0, display: 'flex', flexWrap: 'wrap', gap: 24 }}>
-          <PlateFigure
-            src={guias}
-            alt="Rosybill guides in caps at the end of the morning hunt"
-            plateLabel="PLATE 05"
-            timeLabel="THE GUIDES"
-            caption="Rosybill caps, end of the morning."
-            flex="1 1 200px"
-            sizes="(max-width: 640px) 100vw, (max-width: 1080px) 30vw, 300px"
-          />
-        </div>
+        <PlateFigure
+          src={guias}
+          alt="Rosybill guides in caps at the end of the morning hunt"
+          plateLabel="PLATE 05"
+          timeLabel="THE GUIDES"
+          caption="Rosybill caps, end of the morning."
+        />
       </div>
     </section>
   );

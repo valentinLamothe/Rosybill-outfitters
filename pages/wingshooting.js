@@ -37,6 +37,8 @@ const TERRITORY_PHOTOS = [
   { src: cordobaImg, label: 'PLATE 12', tag: 'CÓRDOBA · DOVES', caption: 'The dove-shooting capital of the world.', alt: 'Open countryside in Córdoba, known for its dove population' },
 ];
 
+const PROVINCE_COUNT = new Set(TERRITORY_PHOTOS.map((p) => p.tag.split(' · ')[0])).size;
+
 const monoLabel = { fontFamily: "'JetBrains Mono',monospace", fontSize: 12.5, letterSpacing: '0.14em', textTransform: 'uppercase' };
 const rule = { display: 'block', width: 56, height: 1, background: 'rgba(232,227,214,0.35)' };
 
@@ -80,7 +82,7 @@ export default function Wingshooting() {
 
         {/* HERO */}
         <section style={{ display: 'flex', flexWrap: 'wrap', minHeight: 560 }}>
-          <div style={{ flex: '1 1 420px', padding: 'clamp(48px,7vw,90px) clamp(24px,5vw,56px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ flex: '1 1 420px', padding: 'clamp(48px,7vw,90px) clamp(24px,5vw,56px)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
               <span style={monoLabel}>WINGSHOOTING</span>
               <span style={{ ...rule, width: 44 }} />
@@ -92,6 +94,14 @@ export default function Wingshooting() {
             <p style={{ margin: '24px 0 0', fontSize: 16.5, lineHeight: 1.68, maxWidth: 420, color: 'rgba(232,227,214,0.8)' }}>
               Real footage and photos from the field and the lodge, sent straight from the ground — plus everything you need to plan a trip across our three territories.
             </p>
+            <div className="wingshooting-hero-cta" style={{ alignItems: 'center', flexWrap: 'wrap', gap: '18px 22px', marginTop: 40 }}>
+              <a href="#our-territories" style={{ display: 'inline-block', fontSize: 14, fontWeight: 600, letterSpacing: '0.04em', padding: '17px 30px', background: '#E8E3D6', color: '#0E1524', textDecoration: 'none' }}>
+                See the territories
+              </a>
+              <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11.5, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(232,227,214,0.7)' }}>
+                {TERRITORY_PHOTOS.length} plates · {PROVINCE_COUNT} provinces
+              </span>
+            </div>
           </div>
           <div style={{ flex: '1 1 480px', minWidth: 0, padding: '0 clamp(24px,5vw,56px) clamp(24px,5vw,56px)', display: 'flex', alignItems: 'center' }}>
             <FieldReel />
@@ -99,7 +109,7 @@ export default function Wingshooting() {
         </section>
 
         {/* OUR TERRITORIES: one shared strip for all three provinces */}
-        <section style={{ padding: 'clamp(64px,9vw,110px) clamp(24px,5vw,48px) 0' }}>
+        <section id="our-territories" style={{ padding: 'clamp(64px,9vw,110px) clamp(24px,5vw,48px) 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 24 }}>
             <span style={monoLabel}>OUR TERRITORIES</span>
             <span style={rule} />
@@ -145,6 +155,16 @@ export default function Wingshooting() {
           <Footer />
         </div>
       </div>
+      <style jsx>{`
+        .wingshooting-hero-cta {
+          display: none;
+        }
+        @media (min-width: 768px) {
+          .wingshooting-hero-cta {
+            display: flex;
+          }
+        }
+      `}</style>
     </>
   );
 }
